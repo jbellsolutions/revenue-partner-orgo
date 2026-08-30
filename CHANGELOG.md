@@ -73,7 +73,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ### Verification
 
-- Revenue Partner tests: 70/70 passed on the current release candidate.
+- Revenue Partner tests: 93/93 passed on the current release candidate.
 - Latitude telemetry tests: 7/7 passed, including canonical-origin, no-proxy/no-redirect, and repeat-registration regressions.
 - The canonical verifier always creates a fresh hash-locked environment, ignores caller-forged bootstrap markers, parses every exact Git-index YAML document, scans exact Git-index blobs for credentials, and executes every shipped test lane plus the exact packaged Super Browser verifier from the locked environment.
 - Hosted provider council entries are comparison-only, expose no credential/setup path, and cannot enter the execution sequence.

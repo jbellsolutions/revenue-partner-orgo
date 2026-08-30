@@ -1,0 +1,18 @@
+{
+  "agent": "Revenue Partner",
+  "computer_name": "revenue-partner-2",
+  "orgo_template_ref": "system/hermes-agent@1.0.0",
+  "repository": "https://github.com/jbellsolutions/revenue-partner-orgo",
+  "hardware": {
+    "os": "linux",
+    "ram_gb": 8,
+    "cpu": 2,
+    "disk_gb": 40,
+    "resolution": "1440x900x24"
+  },
+  "runtime": {
+    "hermes_release": "v2026.8.27",
+    "hermes_commit": "5fc308a70719a83cccdbba4c0e39c23f5a8239d5",
+    "a2a_port": 9900
+  }
+}

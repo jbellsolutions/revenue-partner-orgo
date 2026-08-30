@@ -1,79 +1,149 @@
-# Start Here: Revenue Partner in Slack
+# Start Here: Revenue Partner on an Orgo computer
 
-This is the recommended installation for a new owner. It runs Revenue Partner
-continuously on a private Ubuntu VPS and connects it to Slack with the current
-Hermes Agent messaging experience.
+This walkthrough is for someone creating a cloud computer for the first time.
+You do not need to know server commands. Give this repository to Codex or Claude
+Code and let the setup agent operate Orgo and the terminal while the owner
+approves account access.
 
-The package is pinned to Hermes Agent 0.20.6 (`v2026.8.27`) and preserves the
-Revenue Partner persona, Money Desk knowledge structure, campaign rules, and
-installed specialist skills. The older deterministic Orgo template remains in
-the repository for advanced operators and is not changed by this walkthrough.
-
-## The easiest method
-
-Give this message to Claude Code or Codex:
+## The one message to start with
 
 ```text
-Install my Revenue Partner from this repository:
-https://github.com/jbellsolutions/revenue-partner-agent
+Install Revenue Partner from this repository:
+https://github.com/jbellsolutions/revenue-partner-orgo
 
-Read START-HERE.md, docs/SLACK-SETUP.md, and docs/TOOLS.md first. Create or use a private Ubuntu
-VPS, connect over SSH, and run deploy/setup.sh. Handle every technical step.
-Walk me through Slack one screen at a time and ask for only one account choice
-or private value at a time. Never display or commit a token after I provide it.
-
-Use the included Slack Agent-view manifest. Require my Slack Member ID, invite
-the app only to approved channels, and prove both a DM and a channel thread
-work. Then list the Revenue Partner and bundled Hermes skills, audit installed
-skills, connect Calendar/inbox tools and PandaDoc proposals with the included
-guided helper, and show me the safe update commands. Finish only when the
-container is running and a real Slack message receives a real answer.
+Read START-HERE.md and docs/ORGO-SETUP.md first. Use my Orgo Startup account and
+launch the maintained Hermes template. Handle every technical step yourself.
+Walk me through only the private account approvals, one screen and one choice at
+a time. Never display, repeat, or commit a key. Connect Slack first, add Telegram,
+Calendar, inboxes, and PandaDoc when available, then connect Head of Ops through
+private authenticated A2A. Finish only after a real message receives a reply and
+orgo/verify.sh passes.
 ```
 
-The setup agent operates the terminal and browser. The owner approves the VPS
-charge, account sign-ins, and Slack installation.
+## Before the call
 
-## What happens
+The setup agent confirms:
 
-1. A fresh Ubuntu VPS is created. Four vCPU and 8 GB RAM is comfortable.
-2. The repository is cloned to the server.
-3. The official Hermes setup connects the chosen model account.
-4. Revenue Partner's persona, knowledge templates, GTM skill, references, and
-   browser specialist skills are copied into the private data directory.
-5. The full current Hermes toolset is enabled for the private CLI and approved
-   Slack owners, with owner review for agent-created skill changes.
-6. Hermes generates a complete 50-command Slack Agent-view manifest.
-7. The Slack app is created from that manifest.
-8. The installer privately records the `xoxb-` bot token, `xapp-` Socket Mode
-   token, and the owner's Slack Member ID.
-9. The guided connector offers Calendar, inbox, files, CRM, and other business
-   apps through Composio plus proposals through PandaDoc.
-10. The owner proves a DM, channel thread, and the connected tools they selected.
+- the Orgo account is on Startup or another paid plan;
+- the intended Slack workspace is available;
+- the owner can create a Telegram bot if Telegram is wanted;
+- a demonstration model account or the customer's own model account is ready;
+- Calendar, inbox, and PandaDoc can be connected after the first message works.
 
-## Manual server command
+Private values are entered only into hidden prompts on the Orgo computer. They
+never go in GitHub, screenshots, webinar chat, notes, or copy-and-paste prompts.
 
-On a fresh Ubuntu server:
+## Step 1 — Create the computer
+
+In Orgo, create or open the customer workspace. Launch one Linux computer from
+the maintained template `system/hermes-agent@1.0.0` with:
+
+- Name: `revenue-partner-2`
+- Memory: 8 GB
+- CPU: 2 vCPU
+- Disk: 40 GB
+- Display: 1440 × 900
+
+Wait until Orgo says the computer is running, then open its visible desktop and
+Terminal. The owner does not need to create firewall rules, a public website, or
+an inbound Slack webhook.
+
+## Step 2 — Install Revenue Partner
+
+The setup agent runs:
 
 ```bash
-git clone https://github.com/jbellsolutions/revenue-partner-agent.git
-cd revenue-partner-agent
-./deploy/setup.sh
+git clone https://github.com/jbellsolutions/revenue-partner-orgo.git
+cd revenue-partner-orgo
+./orgo/setup.sh
 ```
 
-The installer explains every next screen. For screenshots or webinar delivery,
-follow [the complete Slack walkthrough](docs/SLACK-SETUP.md).
-The [business-tool walkthrough](docs/TOOLS.md) explains the safe read-only tests.
+The installer pins the reviewed Hermes 0.20.6 release, installs the Revenue
+Partner identity, knowledge structure, GTM skill, browser specialists, full
+operator toolset, approval rules, and the safe A2A foundation. It also places
+simple launch and connection icons on the Orgo desktop.
 
-## Definition of done
+## Step 3 — Connect the model
 
-- The `revenue-partner` container is running after a restart.
-- Only approved Slack members can talk to it.
-- A DM receives an answer.
-- A channel `@Revenue Partner` mention receives a threaded answer.
-- `/help`, `/reload-skills`, `/btw`, `/stop`, and `/approve` appear in Slack.
-- `!skills` and `!revenue-partner` work as typed bot commands.
-- `hermes skills list` shows the Revenue Partner skill and the bundled catalog.
-- `hermes skills audit` completes without an unresolved dangerous finding.
-- Calendar/inbox and proposal connections selected during setup pass a real
-  read-only test; write-capable actions pause for approval.
-- No token or private Slack ID appears in Git.
+If the demonstration account is already attached, the setup agent verifies it
+without printing the credential. For a customer-owned account, it runs:
+
+```bash
+hermes setup
+```
+
+The owner signs in or pastes the provider key into the hidden prompt. The setup
+agent sends one harmless local test and confirms the model answers before adding
+messaging channels.
+
+## Step 4 — Connect Slack
+
+Use the included [slack-manifest.json](slack-manifest.json) and the exact
+[Slack screen walkthrough](docs/SLACK-SETUP.md). Then run:
+
+```bash
+./orgo/connect-channels.sh
+```
+
+Choose Slack. The helper privately stores the `xoxb-` Bot Token, the `xapp-`
+Socket Mode token, and the owner's Slack Member ID. Invite Revenue Partner only
+to channels it is allowed to read.
+
+Prove three things:
+
+1. Send `hello` in a direct message and receive a reply.
+2. Invite Revenue Partner to one approved channel and mention it once.
+3. Reply inside that thread without another mention and receive the follow-up.
+
+## Step 5 — Add Telegram
+
+Run `./orgo/connect-channels.sh` again and choose Telegram. Create the bot with
+`@BotFather`, enter the token in the hidden prompt, send `hello`, and verify the
+reply. Telegram uses outbound long-polling, so no public port is needed.
+
+## Step 6 — Connect Calendar, inboxes, files, CRM, and proposals
+
+Run:
+
+```bash
+./orgo/connect-tools.sh
+```
+
+Connect Composio for the intended Calendar, Gmail or Outlook, Drive, documents,
+CRM, and other business apps. Connect PandaDoc separately for proposals. Start
+with safe proof requests:
+
+```text
+Read my next three calendar events. Do not create, change, or cancel anything.
+List three recent inbox subject lines. Do not send, move, or change anything.
+Create a private draft proposal titled "Connection Test". Do not send it.
+```
+
+## Step 7 — Connect Head of Ops privately
+
+Follow [docs/A2A.md](docs/A2A.md). Both computers join the same private Tailscale
+network and receive separate one-direction credentials. Neither agent exposes a
+public A2A port, and an inbound peer task cannot chain to another peer.
+
+## Step 8 — Finish with proof
+
+Run:
+
+```bash
+./orgo/verify.sh
+```
+
+Setup is done only when:
+
+- the reviewed Hermes release is installed;
+- the Revenue Partner identity and skills load;
+- Slack direct message and channel-thread tests pass;
+- Telegram passes when selected;
+- Calendar/inbox reads and the private proposal draft pass when connected;
+- Head of Ops answers one harmless A2A readiness request;
+- no credential appears in Git, logs shown on screen, or documentation;
+- `orgo/verify.sh` passes.
+
+If a connection is not ready during the call, leave the computer intact and run
+the relevant connection helper again later. Do not delete `~/.hermes`; that is
+where Revenue Partner keeps its memory, skills, configuration, and sessions.

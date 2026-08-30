@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Open Revenue Partner
+Comment=Talk to Revenue Partner on this Orgo computer
+Exec=xfce4-terminal --title="Revenue Partner" --command="bash -lc 'hermes; exec bash'"
+Icon=utilities-terminal
+Terminal=false
+Categories=Office;

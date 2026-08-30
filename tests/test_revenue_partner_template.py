@@ -25,6 +25,7 @@ import urllib.error
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
+LEGACY_README = ROOT / "LEGACY-TEMPLATE.md"
 FILES = ROOT / "files"
 SKILL = FILES / "skills/go-to-market/revenue-partner/SKILL.md"
 SB = FILES / "local-packages/super-browser"
@@ -80,7 +81,7 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         enabled_plugins = config["plugins"]["enabled"]
         self.assertEqual((len(mcp_servers), enabled_mcp, len(enabled_plugins)), (2, 2, 9))
 
-        readme = (ROOT / "README.md").read_text()
+        readme = LEGACY_README.read_text()
         app_description = self.builder.template["apps"][0]["description"]
         self.assertIn("2 hosted MCP servers (attached by URL)", readme)
         self.assertIn("MCP_configured-2_hosted", readme)
@@ -88,7 +89,7 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         self.assertIn("2 configured/enabled MCP connections", app_description)
 
     def test_readme_badges_do_not_overstate_or_link_to_missing_targets(self):
-        readme = (ROOT / "README.md").read_text()
+        readme = LEGACY_README.read_text()
         # CI now runs and passes in the published repository, so the live badge
         # is accurate rather than an overstatement. The placeholder must be gone.
         self.assertIn("actions/workflows/ci.yml/badge.svg", readme)
@@ -111,8 +112,8 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         changelog = (ROOT / "CHANGELOG.md").read_text()
         verification = (ROOT / "docs/VERIFICATION.md").read_text()
         supply_chain = (ROOT / "docs/SUPPLY_CHAIN.md").read_text()
-        self.assertIn("70/70 passed", changelog)
-        self.assertIn("70/70 passed", verification)
+        self.assertIn("93/93 passed", changelog)
+        self.assertIn("93/93 passed", verification)
         self.assertIn("7/7 passed", changelog)
         self.assertIn("7/7 passed", verification)
         self.assertIn("33 files; passed", verification)
@@ -241,7 +242,7 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         telemetry_installer = FILES / "scripts/latitude/install_local_telemetry_patch.sh"
         self.assertTrue(telemetry_installer.is_file())
         telemetry_text = telemetry_installer.read_text()
-        readme_text = (ROOT / "README.md").read_text()
+        readme_text = LEGACY_README.read_text()
         self.assertIn("/root/.hermes/scripts/latitude/install_local_telemetry_patch.sh", text)
         self.assertNotIn("pip install", telemetry_text)
         self.assertNotIn("--no-build-isolation", telemetry_text)
@@ -286,7 +287,7 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         self.assertTrue((ROOT / ".github/scripts/_verify_release_locked.py").is_file())
         self.assertTrue((ROOT / ".github/scripts/check_candidate_credentials.py").is_file())
         self.assertTrue((ROOT / ".github/scripts/check_candidate_yaml.py").is_file())
-        for rel in ("README.md", "CONTRIBUTING.md", "docs/DEPLOYMENT.md", "docs/VERIFICATION.md"):
+        for rel in ("LEGACY-TEMPLATE.md", "CONTRIBUTING.md", "docs/DEPLOYMENT.md", "docs/VERIFICATION.md"):
             self.assertIn(verify_command, (ROOT / rel).read_text(), rel)
         self.assertTrue((ROOT / ".github/scripts/check_shell_syntax.py").is_file())
         self.assertNotIn("releases/latest", text)
@@ -663,10 +664,10 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
             trusted_env["PATH"] = f"{fake_bin_dir}:{trusted_env.get('PATH', '')}"
             trusted_env["REVENUE_PARTNER_VERIFY_GIT"] = "/usr/bin/git"
             expected_inventory = {
-                scanner: "candidate_credentials_ok 185",
+                scanner: "candidate_credentials_ok 197",
                 yaml_scanner: "candidate_yaml_ok 4",
                 ROOT / ".github/scripts/check_skill_frontmatter.py": "candidate_skill_frontmatter_ok 17",
-                ROOT / ".github/scripts/check_shell_syntax.py": "shell_syntax_ok 19",
+                ROOT / ".github/scripts/check_shell_syntax.py": "shell_syntax_ok 24",
             }
             for checker, expected in expected_inventory.items():
                 result = subprocess.run(
@@ -703,7 +704,7 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         self.assertNotIn("when deliberately enabled", security_model)
         public_docs = "\n".join(
             (ROOT / rel).read_text()
-            for rel in ("README.md", "docs/VERIFICATION.md")
+            for rel in ("LEGACY-TEMPLATE.md", "docs/VERIFICATION.md")
         )
         self.assertNotIn("exact-loopback fixture execution", public_docs)
         self.assertNotIn("build-time Playwright verification", public_docs)
@@ -2837,7 +2838,7 @@ assert bounded.closed and not hasattr(bounded_result, "read")
         self.assertNotIn("agentphone_bridge.py", bridge_runner)
 
     def test_shipped_capability_guidance_matches_immutable_image(self):
-        roots = [ROOT / "README.md", ROOT / "docs", FILES]
+        roots = [ROOT / "README.md", LEGACY_README, ROOT / "docs", FILES]
         texts: list[str] = []
         for root in roots:
             paths = [root] if root.is_file() else root.rglob("*")
@@ -2857,7 +2858,7 @@ assert bounded.closed and not hasattr(bounded_result, "read")
             "geo-targeted proxy scrape experiments",
         ):
             self.assertNotIn(stale_guidance, shipped_text)
-        readme = (ROOT / "README.md").read_text()
+        readme = LEGACY_README.read_text()
         security = (ROOT / "docs/SECURITY_MODEL.md").read_text()
         operator = (ROOT / "docs/OPERATOR_GUIDE.md").read_text()
         onboarding = (FILES / "onboard.sh").read_text()
@@ -3173,7 +3174,7 @@ print("direct_hosted_helpers_blocked")
         self.assertIn(f"run: {command}", workflow)
         self.assertIn("REVENUE_PARTNER_VERIFY_PYTHON: ${{ env.pythonLocation }}/bin/python", workflow)
         for guide in (
-            ROOT / "README.md",
+            LEGACY_README,
             ROOT / "CONTRIBUTING.md",
             ROOT / "docs/DEPLOYMENT.md",
             ROOT / "docs/VERIFICATION.md",
@@ -3343,7 +3344,7 @@ print("live_test_and_handoff_truth_ok")
         self.assertIn("revenue-partner-onboard-launch.sh", rendered)
 
     def test_readme_qualifies_campaign_enforcement_boundary(self):
-        readme = (ROOT / "README.md").read_text()
+        readme = LEGACY_README.read_text()
         self.assertIn("Hard runtime gating is implemented in Super Browser and the AgentPhone bridge", readme)
         self.assertIn("rather than a claimed universal campaign-record gate", readme)
 

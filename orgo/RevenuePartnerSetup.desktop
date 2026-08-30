@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Connect Revenue Partner
+Comment=Connect Slack, Telegram, business tools, and A2A
+Exec=xfce4-terminal --title="Revenue Partner Setup" --command="bash -lc 'cd /opt/revenue-partner-orgo 2>/dev/null || cd $HOME/revenue-partner-orgo; ./orgo/connect-channels.sh; exec bash'"
+Icon=preferences-system
+Terminal=false
+Categories=Settings;

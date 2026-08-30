@@ -44,7 +44,7 @@ class CurrentInstallTests(unittest.TestCase):
         slack = (ROOT / "docs/SLACK-SETUP.md").read_text()
         skills = (ROOT / "docs/SKILLS.md").read_text()
         tools = (ROOT / "docs/TOOLS.md").read_text()
-        for required in ("deploy/setup.sh", "Slack Member ID", "real Slack message"):
+        for required in ("orgo/setup.sh", "Slack Member ID", "real message"):
             self.assertIn(required, start)
         for required in ("xoxb-", "xapp-", "connections:write", "Agent view", "@Revenue Partner"):
             self.assertIn(required, slack)
@@ -52,6 +52,26 @@ class CurrentInstallTests(unittest.TestCase):
             self.assertIn(required, skills)
         for required in ("Composio Connect", "PandaDoc MCP", "read-only", "untrusted"):
             self.assertIn(required, tools)
+
+    def test_orgo_startup_profile_has_current_runtime_tools_and_a2a(self) -> None:
+        deployment = json.loads((ROOT / "orgo/deployment.json").read_text())
+        self.assertEqual("system/hermes-agent@1.0.0", deployment["orgo_template_ref"])
+        self.assertEqual("revenue-partner-2", deployment["computer_name"])
+        self.assertEqual(8, deployment["hardware"]["ram_gb"])
+        self.assertEqual(2, deployment["hardware"]["cpu"])
+        setup = (ROOT / "orgo/setup.sh").read_text()
+        for required in (
+            "v2026.8.27",
+            "5fc308a70719a83cccdbba4c0e39c23f5a8239d5",
+            'platform_toolsets.slack=["hermes-slack","a2a"]',
+            'platform_toolsets.telegram=["hermes-telegram","a2a"]',
+            "skills.write_approval=true",
+            "approvals.mode=manual",
+        ):
+            self.assertIn(required, setup)
+        a2a = (ROOT / "orgo/connect-a2a.sh").read_text()
+        for required in ("A2A_PEER_TOKENS", "A2A_TRUSTED_PEERS", "tailscale ip -4"):
+            self.assertIn(required, a2a)
 
     def test_fresh_install_enables_full_tools_and_reviewed_skill_writes(self) -> None:
         setup = (ROOT / "deploy/setup.sh").read_text()

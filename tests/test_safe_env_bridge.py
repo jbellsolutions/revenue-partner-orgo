@@ -191,7 +191,7 @@ class SafeEnvironmentBridgeTests(unittest.TestCase):
                     "REVENUE_PARTNER_NONCE_LEDGER": "/tmp/nonce-ledger",
                 },
             )
-            for document in (ROOT / "README.md", ROOT / "docs/DEPLOYMENT.md"):
+            for document in (ROOT / "LEGACY-TEMPLATE.md", ROOT / "docs/DEPLOYMENT.md"):
                 documented = document.read_text()
                 self.assertIn("--only ORGO_API_KEY", documented)
                 self.assertIn("--only REVENUE_PARTNER_REVIEW_ATTESTATIONS", documented)
