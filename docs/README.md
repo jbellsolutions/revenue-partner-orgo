@@ -6,7 +6,11 @@ This directory documents the public operating, security, deployment, evidence, a
 
 | Document | Purpose |
 |---|---|
-| [Beginner installation](../START-HERE.md) | Launch the current Revenue Partner on a private VPS and connect Slack |
+| [Beginner installation](../START-HERE.md) | Launch Revenue Partner on an Orgo computer and connect the selected channels and tools |
+| [Setup-agent brief](../AGENTS.md) | Complete AI handoff, deployment contract, security rules, and finish line |
+| [Machine-readable handoff](../llms.txt) | Concise agent summary, documentation map, and primary source links |
+| [Orgo setup](ORGO-SETUP.md) | Natural-language Orgo deployment and completion checklist |
+| [Orgo reference](ORGO-REFERENCE.md) | Applied Orgo `llms.txt`, API operations, templates, and sizing notes |
 | [Slack setup](SLACK-SETUP.md) | Create the Slack Agent-view app, tokens, allowlists, channels, and tests |
 | [Skills](SKILLS.md) | Included skills, Skills Hub, approvals, audits, and updates |
 | [Tools](TOOLS.md) | Full Hermes toolset plus guided Calendar, inbox, app, and PandaDoc connections |

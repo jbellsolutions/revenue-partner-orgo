@@ -56,7 +56,7 @@ class CurrentInstallTests(unittest.TestCase):
     def test_orgo_startup_profile_has_current_runtime_tools_and_a2a(self) -> None:
         deployment = json.loads((ROOT / "orgo/deployment.json").read_text())
         self.assertEqual("system/hermes-agent@1.0.0", deployment["orgo_template_ref"])
-        self.assertEqual("revenue-partner-2", deployment["computer_name"])
+        self.assertEqual("ai-guy-revenue-partner", deployment["computer_name"])
         self.assertEqual(8, deployment["hardware"]["ram_gb"])
         self.assertEqual(2, deployment["hardware"]["cpu"])
         setup = (ROOT / "orgo/setup.sh").read_text()
@@ -72,6 +72,22 @@ class CurrentInstallTests(unittest.TestCase):
         a2a = (ROOT / "orgo/connect-a2a.sh").read_text()
         for required in ("A2A_PEER_TOKENS", "A2A_TRUSTED_PEERS", "tailscale ip -4"):
             self.assertIn(required, a2a)
+
+    def test_agent_handoff_is_self_contained_and_source_grounded(self) -> None:
+        agents = (ROOT / "AGENTS.md").read_text()
+        llms = (ROOT / "llms.txt").read_text()
+        orgo_reference = (ROOT / "docs/ORGO-REFERENCE.md").read_text()
+        for required in (
+            "ai-guy-revenue-partner",
+            "orgo/deployment.json",
+            "./orgo/verify.sh",
+            "Definition of done",
+        ):
+            self.assertIn(required, agents)
+        for required in ("AI setup brief", "system/hermes-agent@1.0.0", "docs.orgo.ai/llms.txt"):
+            self.assertIn(required, llms)
+        for required in ("August 30, 2026", "POST /computers", "workspace-scoped"):
+            self.assertIn(required, orgo_reference)
 
     def test_fresh_install_enables_full_tools_and_reviewed_skill_writes(self) -> None:
         setup = (ROOT / "deploy/setup.sh").read_text()

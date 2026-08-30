@@ -10,6 +10,7 @@ One calm, always-available partner that finds opportunities, keeps follow-up
 moving, prepares proposals, organizes the work, and gives people time back.
 
 [**Start the Orgo walkthrough →**](START-HERE.md) &nbsp;·&nbsp;
+[Setup-agent brief](AGENTS.md) &nbsp;·&nbsp;
 [Connect Slack](docs/SLACK-SETUP.md) &nbsp;·&nbsp;
 [See every tool](docs/TOOLS.md) &nbsp;·&nbsp;
 [Connect Head of Ops](docs/A2A.md)
@@ -81,6 +82,10 @@ Give a setup agent this repository:
 https://github.com/jbellsolutions/revenue-partner-orgo
 ```
 
+The root [setup-agent brief](AGENTS.md) and [`llms.txt`](llms.txt) give another
+AI the summary, deployment contract, safety boundary, source links, and finish
+line automatically after it opens or clones the repository.
+
 Then say:
 
 ```text
@@ -115,7 +120,7 @@ launching a campaign remains behind an explicit approval step.
 
 ## The simple setup
 
-1. Launch one Orgo Hermes computer named `revenue-partner-2`.
+1. Launch one Orgo Hermes computer named `ai-guy-revenue-partner`.
 2. Run `./orgo/setup.sh` from this repository.
 3. Connect Slack and Telegram with `./orgo/connect-channels.sh`.
 4. Connect Calendar, inboxes, files, CRM, and proposals with
@@ -140,7 +145,10 @@ configured computer remains persistent and can be cloned from Orgo.
 | Guide | Covers |
 |---|---|
 | [Start Here](START-HERE.md) | First-time installation from one repository link |
+| [Setup-agent brief](AGENTS.md) | Self-contained instructions for Codex, Claude Code, and other setup agents |
+| [`llms.txt`](llms.txt) | Machine-readable summary, entry points, contract, and source links |
 | [Orgo setup](docs/ORGO-SETUP.md) | Computer shape, install, connections, proof, and Startup-plan notes |
+| [Orgo reference](docs/ORGO-REFERENCE.md) | Applied Orgo `llms.txt`, API operations, template rules, and sizing notes |
 | [Slack setup](docs/SLACK-SETUP.md) | App manifest, tokens, Member ID, direct message, and channel-thread test |
 | [Tools](docs/TOOLS.md) | Calendar, inboxes, files, CRM, business apps, proposals, and safe tests |
 | [Skills](docs/SKILLS.md) | Included skills, the [Hermes Skills system](https://hermes-agent.nousresearch.com/docs/skills), audits, and updates |

@@ -4,11 +4,17 @@ This version gives Revenue Partner its own visible cloud computer. It stays on,
 keeps its files and memory, answers through Slack or Telegram, and can use the
 desktop without touching the owner's personal computer.
 
+Give an AI setup agent the repository link. It reads the root `AGENTS.md`, this
+walkthrough, and `orgo/deployment.json`; it then performs the technical work and
+pauses only for private account-holder authorization. The official platform
+facts and API map are in [ORGO-REFERENCE.md](ORGO-REFERENCE.md), grounded in
+[Orgo's current `llms.txt`](https://docs.orgo.ai/llms.txt).
+
 ## What the setup agent does
 
 1. Open the Orgo workspace and launch an 8 GB Linux computer from
    `system/hermes-agent@1.0.0`.
-2. Name it `revenue-partner-2`.
+2. Name it `ai-guy-revenue-partner`.
 3. Open its terminal and run:
 
    ```bash
@@ -25,6 +31,11 @@ desktop without touching the owner's personal computer.
 7. Connect the second computer with [the A2A guide](A2A.md).
 8. Run `./orgo/verify.sh`, send a real Slack message, and confirm the reply.
 
+The process is safe to resume. If the workspace or computer already exists, the
+setup agent inspects and reuses it instead of creating a duplicate. It must not
+modify any unrelated computer or connect an existing Funding Revenue Partner to
+this agent.
+
 The installer handles the technical work. During a webinar, the owner only
 approves the account sign-ins and privately supplies the values belonging to
 their accounts.
@@ -35,6 +46,11 @@ Orgo's Startup plan can launch Orgo-maintained templates, including Hermes.
 Private custom golden-template publishing is a Scale feature, so this repository
 is a reproducible setup layer on top of the maintained Hermes template. The
 resulting computer is still persistent and can be cloned after it is configured.
+
+Current Orgo facts must be rechecked at deployment time using the official
+[`llms.txt`](https://docs.orgo.ai/llms.txt). The repository's selected computer
+shape is 8 GB RAM, 2 vCPU, and 40 GB disk; it does not claim that plan limits or
+pricing will remain unchanged.
 
 ## Finish line
 

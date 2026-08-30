@@ -1,0 +1,64 @@
+# Revenue Partner for Orgo
+
+> Public, reproducible deployment package for The AI Guy Revenue Partner: a
+> persistent Hermes Agent for revenue, operations, calendars, inboxes, CRM,
+> documents, proposals, Slack, Telegram, and private agent-to-agent work.
+
+Repository: https://github.com/jbellsolutions/revenue-partner-orgo
+Human entry point: https://github.com/jbellsolutions/revenue-partner-orgo/blob/main/START-HERE.md
+AI setup brief: https://github.com/jbellsolutions/revenue-partner-orgo/blob/main/AGENTS.md
+
+## Instructions for an AI setup agent
+
+1. Read AGENTS.md and START-HERE.md before changing infrastructure.
+2. Read orgo/deployment.json as the machine-readable deployment contract.
+3. Use the curated system/hermes-agent@1.0.0 template and the repository's
+   orgo/setup.sh overlay. Do not publish a Scale-only custom template.
+4. Keep credentials and customer context on the private Orgo computer, never in
+   GitHub or chat output.
+5. Connect Slack first, then optional Telegram and business tools.
+6. Run orgo/verify.sh and prove a real authorized message before reporting
+   completion.
+
+## Deployment contract
+
+Workspace: AI Guy, unless the owner names another customer workspace
+Computer: ai-guy-revenue-partner
+RAM: 8 GB
+CPU: 2 vCPU
+Disk: 40 GB
+Display: 1440x900x24
+Template: system/hermes-agent@1.0.0
+Installer: ./orgo/setup.sh
+Channel helper: ./orgo/connect-channels.sh
+Business-tool helper: ./orgo/connect-tools.sh
+A2A helper: ./orgo/connect-a2a.sh
+Verifier: ./orgo/verify.sh
+
+## Documentation map
+
+- START-HERE.md: nontechnical standalone installation
+- docs/ORGO-SETUP.md: Orgo-specific deployment sequence
+- docs/ORGO-REFERENCE.md: source-mapped Orgo API and platform notes
+- docs/SLACK-SETUP.md: separate Revenue Partner Slack app
+- docs/TOOLS.md: Calendar, inbox, Drive, CRM, PandaDoc, and safe tests
+- docs/SKILLS.md: installed and optional Hermes skills
+- docs/A2A.md: authenticated private connection to Head of Ops
+- SECURITY.md: secrets, approvals, and public/private boundaries
+
+## Primary external sources
+
+Orgo documentation index: https://docs.orgo.ai/llms.txt
+Orgo Hermes guide: https://docs.orgo.ai/guides/hermes
+Orgo templates: https://docs.orgo.ai/guides/templates/introduction
+Orgo API: https://docs.orgo.ai/api-reference/introduction
+Hermes skills: https://hermes-agent.nousresearch.com/docs/skills
+Hermes A2A: https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/messaging/a2a.md
+
+## Safety boundary
+
+An installation is not complete merely because files were copied. It is
+complete only after the repository verifier passes and an authorized channel
+returns a real response. External sends, calendar edits, proposals, spending,
+publishing, deletions, invitations, and customer-record changes require explicit
+owner approval.

@@ -27,7 +27,7 @@ Older candidate hashes and artifact sizes are intentionally not presented as cur
 | Python compilation | Passed | Builder, tests, bridges, packaged source |
 | Super Browser runtime registration | Passed twice | Atomic standard-library `.pth`/`.dist-info` plus verified console entry point; no build backend or resolver |
 | Shell syntax | 24 passed | Count derived from every tracked shell program plus assembled template hooks by `.github/scripts/check_shell_syntax.py` |
-| Markdown/HTML local links and assets | 85 resolved | Count derived by `.github/scripts/check_markdown_links.py`; Markdown links/images plus HTML `src`/`href` references |
+| Markdown/HTML local links and assets | 98 resolved | Count derived by `.github/scripts/check_markdown_links.py`; Markdown links/images plus HTML `src`/`href` references |
 | Exact candidate export | Passed | Non-Python launcher rejects tracked/index differences and non-ignored untracked files, captures `git write-tree`, verifies archive parity, and runs all tests/builds inside that export |
 | Local JSON Schema | Passed | Disposable environment populated from `requirements-ci.lock` under `--require-hashes` |
 | Authenticated Orgo validation | Passed for this exact tree | `POST /api/templates/validate` returned HTTP `200` with `ok: true`, `api_version: orgo.ai/v1`, the echoed `revenue-partner-agent@1.0.1` identity, and the bound 22-entry file inventory. Exact bytes below. Schema acceptance only — not publication, image readiness, launch, or live runtime |

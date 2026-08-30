@@ -1,6 +1,6 @@
 {
   "agent": "Revenue Partner",
-  "computer_name": "revenue-partner-2",
+  "computer_name": "ai-guy-revenue-partner",
   "orgo_template_ref": "system/hermes-agent@1.0.0",
   "repository": "https://github.com/jbellsolutions/revenue-partner-orgo",
   "hardware": {

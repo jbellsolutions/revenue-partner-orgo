@@ -5,13 +5,17 @@ You do not need to know server commands. Give this repository to Codex or Claude
 Code and let the setup agent operate Orgo and the terminal while the owner
 approves account access.
 
+Setup agents should also read [AGENTS.md](AGENTS.md). It contains the complete
+handoff, security rules, deployment contract, and definition of done. The
+machine-readable version is [`llms.txt`](llms.txt).
+
 ## The one message to start with
 
 ```text
 Install Revenue Partner from this repository:
 https://github.com/jbellsolutions/revenue-partner-orgo
 
-Read START-HERE.md and docs/ORGO-SETUP.md first. Use my Orgo Startup account and
+Read AGENTS.md, START-HERE.md, and docs/ORGO-SETUP.md first. Use my Orgo Startup account and
 launch the maintained Hermes template. Handle every technical step yourself.
 Walk me through only the private account approvals, one screen and one choice at
 a time. Never display, repeat, or commit a key. Connect Slack first, add Telegram,
@@ -38,7 +42,7 @@ never go in GitHub, screenshots, webinar chat, notes, or copy-and-paste prompts.
 In Orgo, create or open the customer workspace. Launch one Linux computer from
 the maintained template `system/hermes-agent@1.0.0` with:
 
-- Name: `revenue-partner-2`
+- Name: `ai-guy-revenue-partner`
 - Memory: 8 GB
 - CPU: 2 vCPU
 - Disk: 40 GB
