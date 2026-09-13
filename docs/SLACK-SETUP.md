@@ -1,3 +1,5 @@
+> Current setup and live app-name verification: [shared walkthrough](../onboarding/GUIDE.md). The setup AI handles these technical steps and obtains consent in Slack when required.
+
 # Slack Setup: Screen by Screen
 
 This is the Slack path for the supported Orgo installation. It uses Socket
@@ -12,13 +14,14 @@ The owner needs:
 - their Slack Member ID;
 - one or more channels where the app may be invited.
 
-Run `./orgo/setup.sh` first, optionally with `--name-prefix "Acme"`. The default
-name is **Revenue Agent**; a custom prefix produces **Acme Revenue Agent**.
+Run `./orgo-onboard setup` (or the compatible `./orgo/setup.sh`) first. The default
+name is **Revenue Partner**; `--name "Acme Revenue"` selects a full custom name.
+The older `--name-prefix` interface retains compatibility with Revenue Agent names.
 The installer uses the included [`slack-manifest.json`](../slack-manifest.json)
 as a base and writes the personalized version to
 `$HERMES_HOME/slack-manifest.json` (normally `~/.hermes/slack-manifest.json`).
 It sets both the app name and bot display name from the saved installation name,
-retaining Hermes Agent 0.20.6's Agent view, permissions, events, and commands.
+retaining the reviewed Hermes Agent 0.21.2 Agent view, permissions, events, and commands.
 Use the personalized file printed by setup, not the repository's base file.
 
 ## 1. Create the app from the manifest
@@ -34,7 +37,7 @@ Use the personalized file printed by setup, not the repository's base file.
 
 The manifest enables Slack's current Agent messaging experience. Slack warns
 that an app cannot switch back from Agent view after applying it. This is
-expected for a newly created Revenue Agent app.
+expected for a newly created Revenue Partner app.
 
 The manifest also enables Socket Mode, messages, files, reactions, Agent DMs,
 and every current Hermes slash command. No public request URL is required.
@@ -80,7 +83,7 @@ name or email address.
 
 Run `./orgo/connect-channels.sh`, choose Slack, and provide the tokens and Slack
 Member ID at its private prompts. For the examples below, replace **Revenue
-Agent** with the full installed name, such as **Acme Revenue Agent**.
+Agent** with the full installed name, such as **Acme Revenue Partner**.
 
 The home channel receives scheduled reports and proactive messages. To use one:
 
@@ -89,7 +92,7 @@ The home channel receives scheduled reports and proactive messages. To use one:
 3. Copy the Channel ID at the bottom.
 4. Have the setup agent store the `C…` or `G…` value as `SLACK_HOME_CHANNEL` in
    the private Hermes environment and restart the gateway.
-5. In that channel, run `/invite @Revenue Agent`, selecting the actual named app.
+5. In that channel, run `/invite @Revenue Partner`, selecting the actual named app.
 
 Skip this optional configuration if scheduled Slack delivery is not needed yet.
 
@@ -97,7 +100,7 @@ Skip this optional configuration if scheduled Slack delivery is not needed yet.
 
 ### Direct message
 
-Open **Apps → Revenue Agent** (or its full custom name) and send:
+Open **Apps → Revenue Partner** (or its full custom name) and send:
 
 ```text
 hello
@@ -110,7 +113,7 @@ The app answers every authorized DM without an `@mention`.
 Invite the app, then send:
 
 ```text
-@Revenue Agent give me a one-sentence status
+@Revenue Partner give me a one-sentence status
 ```
 
 In channels, an `@mention` starts the conversation. The agent replies in
@@ -151,8 +154,7 @@ existing app with the repository's default manifest just to adopt this feature.
 
 Slack has separate app and bot names. **Basic Information → Display Information**
 edits the app name; **App Home → Your App's Presence** edits the bot name. Changing
-these in Slack does not update the agent's SOUL. The supported installer always
-includes **Revenue Agent** in generated names, but Slack administrators still
+these in Slack does not update the agent's SOUL. The supported installer uses the selected full name. Slack administrators still
 control their app settings; there is no background name enforcement.
 
 ## Troubleshooting
@@ -161,7 +163,7 @@ control their app settings; there is no background name enforcement.
 |---|---|
 | App is offline | Run `hermes gateway status` and verify both tokens were entered |
 | DM is ignored | Confirm the sender's exact Member ID is in `SLACK_ALLOWED_USERS` |
-| Channel mention is ignored | Run `/invite @Revenue Agent` using the actual full app name |
+| Channel mention is ignored | Run `/invite @Revenue Partner` using the actual full app name |
 | Old name remains in Slack | Confirm the generated manifest was applied to the same app as the bot token, and check both app and bot name fields |
 | Name check cannot reach Slack | Check connection, token validity, and `users:read`; an unavailable check is not a successful name verification |
 | Commands are missing | Regenerate and reapply the manifest, then reinstall when prompted |

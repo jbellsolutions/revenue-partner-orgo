@@ -1,5 +1,7 @@
 <div align="center">
 
+**Supported self-install:** Give your setup AI this repository link and follow [Start here](START-HERE.md). The shared walkthrough offers resumable setup, optional Honcho, Latitude, dedicated phone/inbox and business connections. Default name: **Revenue Partner**; existing custom names are preserved. [Setup and verification details](onboarding/GUIDE.md).
+
 <img src="docs/assets/revenue-partner-hero-v2.webp" alt="Revenue Partner connects revenue, operations, calendar, inbox, customers, proposals, and daily priorities" width="1000"/>
 
 # Revenue Partner for [Orgo](https://orgo.ai?r=aiguy)
@@ -96,11 +98,10 @@ every technical step, and walk me through only the private account approvals.
 Finish when it answers a real Slack message and passes the Orgo verification.
 ```
 
-New installations are named **Revenue Agent**. Include an optional prefix in
-the request, such as “Use Acme as the name prefix,” to get **Acme Revenue Agent**.
-The setup agent applies the full name to Slack and the agent's introductions.
-**Revenue Agent** remains the required suffix. Existing installations keep
-their names.
+New installations default to **Revenue Partner**. The owner can choose a full
+custom name, and the setup AI keeps the introduction, Slack app and bot names
+consistent. Existing custom names are preserved. The older `--name-prefix`
+option remains available for installations using Revenue Agent names.
 
 The setup agent launches [Orgo](https://orgo.ai?r=aiguy)'s maintained Hermes computer, installs the exact
 reviewed Hermes release and Revenue Partner profile, connects the accounts the

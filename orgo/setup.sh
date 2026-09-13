@@ -3,9 +3,16 @@
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# The supported entrypoint is the resumable shared journey. Keep the role overlay
+# callable internally for upgrades and existing automation.
+if [ "${1:-}" != "--runtime-only" ]; then
+  exec bash "$REPO_DIR/orgo-onboard" setup "$@"
+fi
+shift
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
-HERMES_TAG="v2026.8.27"
-HERMES_COMMIT="5fc308a70719a83cccdbba4c0e39c23f5a8239d5"
+HERMES_TAG="v2026.9.11"
+HERMES_COMMIT="939e45c91d751fadd94dcd1b873ac3cb44846213"
+INSTALLER_SHA256="5854b15670b51a8daae8f59ddfa917062de9f74be261eb73b4b8d719710f8968"
 HERMES_REPO="/usr/local/lib/hermes-agent"
 NAME_ARGS=()
 
@@ -57,7 +64,9 @@ fi
 if [ "$installed_commit" != "$HERMES_COMMIT" ]; then
   say "2 of 5 — Installing the reviewed Hermes release"
   installer="$(mktemp)"
-  curl -fsSL "https://raw.githubusercontent.com/NousResearch/hermes-agent/$HERMES_TAG/scripts/install.sh" -o "$installer"
+  curl -fsSL "https://raw.githubusercontent.com/NousResearch/hermes-agent/$HERMES_COMMIT/scripts/install.sh" -o "$installer"
+  actual_sha="$(sha256sum "$installer" | awk '{print $1}')"
+  [ "$actual_sha" = "$INSTALLER_SHA256" ] || fail "the Hermes installer checksum did not match"
   bash "$installer" --skip-setup --branch "$HERMES_TAG" --commit "$HERMES_COMMIT" --force-commit
   rm -f "$installer"
 else

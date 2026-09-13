@@ -5,7 +5,7 @@ ALLOW_UNCONNECTED=false
 [ "${1:-}" = "--allow-unconnected" ] && ALLOW_UNCONNECTED=true
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
-EXPECTED_COMMIT="5fc308a70719a83cccdbba4c0e39c23f5a8239d5"
+EXPECTED_COMMIT="939e45c91d751fadd94dcd1b873ac3cb44846213"
 
 python3 -m json.tool "$REPO_DIR/orgo/deployment.json" >/dev/null
 bash -n "$REPO_DIR/orgo/setup.sh" "$REPO_DIR/orgo/connect-channels.sh" \
@@ -13,7 +13,9 @@ bash -n "$REPO_DIR/orgo/setup.sh" "$REPO_DIR/orgo/connect-channels.sh" \
 python3 -m py_compile "$REPO_DIR/orgo/sync_seed.py" "$REPO_DIR/orgo/identity.py"
 [ -f "$HERMES_HOME/SOUL.md" ]
 [ -f "$HERMES_HOME/skills/go-to-market/revenue-partner/SKILL.md" ]
-installed="$(git -C /usr/local/lib/hermes-agent rev-parse HEAD 2>/dev/null || true)"
+HERMES_SOURCE_DIR="${HERMES_SOURCE_DIR:-/usr/local/lib/hermes-agent}"
+[ -d "$HERMES_SOURCE_DIR/.git" ] || HERMES_SOURCE_DIR="$HERMES_HOME/hermes-agent"
+installed="$(git -C "$HERMES_SOURCE_DIR" rev-parse HEAD 2>/dev/null || true)"
 [ "$installed" = "$EXPECTED_COMMIT" ] || {
   echo "Hermes is not at the reviewed commit." >&2
   exit 1

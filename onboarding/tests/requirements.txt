@@ -1,0 +1,7 @@
+# Exact direct dependencies used by the isolated adapter-contract suite.
+aiohttp==3.13.3
+PyYAML==6.0.3
+pydantic==2.13.3
+python-dotenv==1.2.3
+rich==15.0.0
+pillow==12.3.0

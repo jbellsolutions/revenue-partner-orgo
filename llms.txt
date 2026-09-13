@@ -14,11 +14,10 @@ AI setup brief: https://github.com/jbellsolutions/revenue-partner-orgo/blob/main
 2. Read orgo/deployment.json as the machine-readable deployment contract.
 3. Use the curated system/hermes-agent@1.0.0 template and the repository's
    orgo/setup.sh overlay. Do not publish a Scale-only custom template.
-   New names default to Revenue Agent. An optional --name-prefix "Acme" makes
-   Acme Revenue Agent; retain the required Revenue Agent suffix. No extra name
-   question is needed when the owner supplies no prefix. Connect Slack with the
-   personalized ~/.hermes/slack-manifest.json printed by the installer. Respect
-   HERMES_HOME when set. Existing profiles retain their names without migration.
+   New names default to Revenue Partner; a selected full custom name is allowed.
+   Preserve existing custom names. Use orgo-onboard setup/resume/connect/status
+   and read onboarding/GUIDE.md for the current versioned journey. Use the private
+   generated Slack manifest and verify both app and bot names plus a real thread.
 4. Keep credentials and customer context on the private Orgo computer, never in
    GitHub or chat output.
 5. Connect Slack first, then optional Telegram and business tools.

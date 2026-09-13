@@ -49,6 +49,11 @@ def read_settings(home: Path) -> dict | None:
         return None
     try:
         value = json.loads(path.read_text())
+        if value.get("version") == 2:
+            display = value.get("display_name")
+            if not isinstance(display, str) or not 1 <= len(display) <= 35 or any(unicodedata.category(c).startswith("C") for c in display):
+                raise ValueError
+            return value
         prefix, display = normalize_prefix(value["name_prefix"])
         if value["version"] != 1 or value["display_name"] != display or prefix != value["name_prefix"]:
             raise ValueError
@@ -62,6 +67,8 @@ def resolve(home: Path, argument: str | None = None, *, use_environment: bool = 
     requested = argument
     if requested is None and use_environment:
         requested = os.environ.get("AGENT_NAME_PREFIX")
+    if saved and requested is None:
+        return saved
     if saved is None and (home / PROFILE_MARKER).exists():
         if requested is not None:
             raise IdentityError("This existing Orgo profile predates managed names. Its identity is preserved; automatic migration is not supported.")

@@ -1,3 +1,5 @@
+> Legacy custom-template reference. The supported Orgo installation and live verification contract is [the shared walkthrough](../onboarding/GUIDE.md). Do not use the disabled legacy phone bridge for new installs.
+
 # Revenue Partner on [Orgo](https://orgo.ai?r=aiguy): the simple walkthrough
 
 This version gives Revenue Partner its own visible cloud computer. It stays on,

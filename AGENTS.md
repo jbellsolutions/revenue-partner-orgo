@@ -1,3 +1,16 @@
+<!-- shared-onboarding-contract -->
+The current self-install contract is [onboarding/GUIDE.md](onboarding/GUIDE.md).
+Read it before the older role-specific instructions below. Use the shared
+setup/resume/connect/status commands; do the technical work yourself. Preserve
+healthy connections, custom names, secrets and conversations. Present each
+optional service independently with its benefit, account, charges and data
+access. Every selected installation may have its own phone and inbox; workers
+never inherit those credentials. AgentCard starts in TEST with spending disabled.
+Keep dashboards and agent collaboration private. Only the dedicated signed
+phone adapter may use Funnel. Do not mark live tests passed from configuration
+presence. Revenue Partner's test Orgo canary precedes production promotion.
+<!-- /shared-onboarding-contract -->
+
 # Revenue Partner for Orgo: setup-agent handoff
 
 This file is the execution brief for an AI agent that receives this repository
@@ -52,10 +65,8 @@ plans without a Scale-only template build.
    computer. In particular, do not touch an existing Funding Revenue Partner.
 3. Create the computer from `orgo/deployment.json`, wait for `running`, open its
    terminal, clone this repository, and run `./orgo/setup.sh`.
-   For a new installation, pass the owner's optional prefix with
-   `./orgo/setup.sh --name-prefix "Acme"`, producing **Acme Revenue Agent**.
-   With no prefix, use **Revenue Agent** without an extra naming question.
-   `Revenue Agent` is required branding; never remove it from generated names.
+   Default to **Revenue Partner** on a fresh install; accept a selected full display name.
+   Preserve custom existing names. The older `--name-prefix` entrypoint remains compatible.
    Use the personalized `$HERMES_HOME/slack-manifest.json` printed by setup
    (normally `~/.hermes/slack-manifest.json`), not the repository's base manifest.
    Existing profiles without naming settings retain their names; do not migrate
