@@ -96,6 +96,12 @@ every technical step, and walk me through only the private account approvals.
 Finish when it answers a real Slack message and passes the Orgo verification.
 ```
 
+New installations are named **Revenue Agent**. Include an optional prefix in
+the request, such as “Use Acme as the name prefix,” to get **Acme Revenue Agent**.
+The setup agent applies the full name to Slack and the agent's introductions.
+**Revenue Agent** remains the required suffix. Existing installations keep
+their names.
+
 The setup agent launches [Orgo](https://orgo.ai?r=aiguy)'s maintained Hermes computer, installs the exact
 reviewed Hermes release and Revenue Partner profile, connects the accounts the
 owner chooses, and proves the result. No public webhook is required. No private

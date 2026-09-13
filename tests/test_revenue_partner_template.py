@@ -664,7 +664,7 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
             trusted_env["PATH"] = f"{fake_bin_dir}:{trusted_env.get('PATH', '')}"
             trusted_env["REVENUE_PARTNER_VERIFY_GIT"] = "/usr/bin/git"
             expected_inventory = {
-                scanner: "candidate_credentials_ok 200",
+                scanner: "candidate_credentials_ok 202",
                 yaml_scanner: "candidate_yaml_ok 4",
                 ROOT / ".github/scripts/check_skill_frontmatter.py": "candidate_skill_frontmatter_ok 17",
                 ROOT / ".github/scripts/check_shell_syntax.py": "shell_syntax_ok 24",
@@ -2861,6 +2861,9 @@ assert bounded.closed and not hasattr(bounded_result, "read")
         readme = LEGACY_README.read_text()
         security = (ROOT / "docs/SECURITY_MODEL.md").read_text()
         operator = (ROOT / "docs/OPERATOR_GUIDE.md").read_text()
+        # Check the displayed policy text; referral links must not change its meaning.
+        security = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", security)
+        operator = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", operator)
         onboarding = (FILES / "onboard.sh").read_text()
         self.assertIn("removed by the exact-version image-build pruner", readme)
         self.assertIn("direct network helpers are hard-stopped", readme)

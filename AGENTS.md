@@ -52,6 +52,14 @@ plans without a Scale-only template build.
    computer. In particular, do not touch an existing Funding Revenue Partner.
 3. Create the computer from `orgo/deployment.json`, wait for `running`, open its
    terminal, clone this repository, and run `./orgo/setup.sh`.
+   For a new installation, pass the owner's optional prefix with
+   `./orgo/setup.sh --name-prefix "Acme"`, producing **Acme Revenue Agent**.
+   With no prefix, use **Revenue Agent** without an extra naming question.
+   `Revenue Agent` is required branding; never remove it from generated names.
+   Use the personalized `$HERMES_HOME/slack-manifest.json` printed by setup
+   (normally `~/.hermes/slack-manifest.json`), not the repository's base manifest.
+   Existing profiles without naming settings retain their names; do not migrate
+   them or rename unrelated agents. Naming does not change machine or A2A IDs.
 4. Configure the model through `hermes setup` without displaying or recording
    the credential. Prove a harmless local response before adding channels.
 5. Connect Slack with `./orgo/connect-channels.sh`. Add Telegram only when the
@@ -83,6 +91,9 @@ plans without a Scale-only template build.
 
 - The intended Orgo computer is running with the pinned Hermes release.
 - Revenue Partner identity, skills, approvals, and operator tools load.
+- On a new installation, the saved display name, SOUL introduction, generated
+  Slack app/bot names, and the connected bot profile agree. A skipped or failed
+  Slack identity read is not proof of the installed Slack name.
 - At least one authorized messaging channel answers a real message.
 - Connected business tools pass read-only tests; PandaDoc produces only a
   private unsent test draft.

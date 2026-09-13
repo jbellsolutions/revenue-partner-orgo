@@ -46,7 +46,7 @@ class CurrentInstallTests(unittest.TestCase):
         tools = (ROOT / "docs/TOOLS.md").read_text()
         for required in ("orgo/setup.sh", "Slack Member ID", "real message"):
             self.assertIn(required, start)
-        for required in ("xoxb-", "xapp-", "connections:write", "Agent view", "@Revenue Partner"):
+        for required in ("xoxb-", "xapp-", "connections:write", "Agent view", "@Revenue Agent"):
             self.assertIn(required, slack)
         for required in ("Hermes Skills Hub", "skills audit", "!skills approval on", "revenue-partner"):
             self.assertIn(required, skills)
