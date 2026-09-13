@@ -2,13 +2,13 @@
 
 ## Scope
 
-Revenue Partner Agent pins and verifies application-level build dependencies. The deterministic source payload, Python locks, committed Orgo schema, and downloaded release artifacts are reproducible inputs. The Orgo base image and apt repository snapshot are platform inputs and are not claimed to be content-addressed by this repository.
+Revenue Partner Agent pins and verifies application-level build dependencies. The deterministic source payload, Python locks, committed [Orgo](https://orgo.ai?r=aiguy) schema, and downloaded release artifacts are reproducible inputs. The [Orgo](https://orgo.ai?r=aiguy) base image and apt repository snapshot are platform inputs and are not claimed to be content-addressed by this repository.
 
-## Source-bound Orgo schema
+## Source-bound [Orgo](https://orgo.ai?r=aiguy) schema
 
-- `template-schema.json` is the vendored Orgo `orgo.ai/v1` template schema used by the canonical local matrix.
+- `template-schema.json` is the vendored [Orgo](https://orgo.ai?r=aiguy) `orgo.ai/v1` template schema used by the canonical local matrix.
 - `build_template.py` requires SHA-256 `619fbd1becd060a4c5c0de28c325f8e96b4f6cb456ef6c8f8cacdb0789932dd7` before parsing it.
-- Neither `ORGO_API_BASE` nor another caller-controlled endpoint can select the schema or authenticated Orgo authority used by release commands. Authenticated `--remote-validate` is a separate current-service compatibility gate and never substitutes for the committed schema gate.
+- Neither `ORGO_API_BASE` nor another caller-controlled endpoint can select the schema or authenticated [Orgo](https://orgo.ai?r=aiguy) authority used by release commands. Authenticated `--remote-validate` is a separate current-service compatibility gate and never substitutes for the committed schema gate.
 
 ## Locked Python environments
 
@@ -90,7 +90,7 @@ Generated resolved JSON, raw research captures, caches, and credentials are excl
 
 The following are outside this repository's content-addressed guarantee:
 
-- the Orgo base image selected by the template service;
+- the [Orgo](https://orgo.ai?r=aiguy) base image selected by the template service;
 - apt package versions provided by that image's configured repositories;
 - availability of the versioned upstream artifact URLs.
 
@@ -107,5 +107,5 @@ Before release:
 5. assemble the resolved template under JSON Schema validation;
 6. assert the canonical serialized publication envelope remains below `1,000,000` bytes;
 7. run authenticated remote schema validation;
-8. build an image and smoke-test only when the Orgo workspace tier permits it;
+8. build an image and smoke-test only when the [Orgo](https://orgo.ai?r=aiguy) workspace tier permits it;
 9. record exact Git commit/tree and live evidence independently.

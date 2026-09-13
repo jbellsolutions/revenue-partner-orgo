@@ -6,18 +6,18 @@ This directory documents the public operating, security, deployment, evidence, a
 
 | Document | Purpose |
 |---|---|
-| [Beginner installation](../START-HERE.md) | Launch Revenue Partner on an Orgo computer and connect the selected channels and tools |
+| [Beginner installation](../START-HERE.md) | Launch Revenue Partner on an [Orgo](https://orgo.ai?r=aiguy) computer and connect the selected channels and tools |
 | [Setup-agent brief](../AGENTS.md) | Complete AI handoff, deployment contract, security rules, and finish line |
 | [Machine-readable handoff](../llms.txt) | Concise agent summary, documentation map, and primary source links |
-| [Orgo setup](ORGO-SETUP.md) | Natural-language Orgo deployment and completion checklist |
-| [Orgo reference](ORGO-REFERENCE.md) | Applied Orgo `llms.txt`, API operations, templates, and sizing notes |
+| [Orgo setup](ORGO-SETUP.md) | Natural-language [Orgo](https://orgo.ai?r=aiguy) deployment and completion checklist |
+| [Orgo reference](ORGO-REFERENCE.md) | Applied [Orgo](https://orgo.ai?r=aiguy) `llms.txt`, API operations, templates, and sizing notes |
 | [Slack setup](SLACK-SETUP.md) | Create the Slack Agent-view app, tokens, allowlists, channels, and tests |
 | [Skills](SKILLS.md) | Included skills, Skills Hub, approvals, audits, and updates |
 | [Tools](TOOLS.md) | Full Hermes toolset plus guided Calendar, inbox, app, and PandaDoc connections |
 | [Updates](UPDATES.md) | Current image pin, reviewed features, and update procedure |
 | [Architecture](ARCHITECTURE.md) | Components, trust boundaries, runtime flow, and extension points |
 | [Operator guide](OPERATOR_GUIDE.md) | Configure the offer, assess fit, run the Money Desk, approve campaigns, and report results |
-| [Deployment](DEPLOYMENT.md) | Validate, publish, build, launch, and smoke-test the Orgo template |
+| [Deployment](DEPLOYMENT.md) | Validate, publish, build, launch, and smoke-test the [Orgo](https://orgo.ai?r=aiguy) template |
 | [Security model](SECURITY_MODEL.md) | Secrets, approval controls, provider boundaries, bridge restrictions, and failure modes |
 | [Supply chain](SUPPLY_CHAIN.md) | Python locks, checksum-verified artifacts, regeneration, and platform trust limits |
 | [Source grounding](SOURCE_GROUNDING.md) | Authoritative sources, claim classes, evidence limits, and prohibited inferences |

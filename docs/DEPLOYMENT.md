@@ -1,6 +1,6 @@
 # Deployment Guide
 
-> This document covers the advanced deterministic Orgo release pipeline. For a
+> This document covers the advanced deterministic [Orgo](https://orgo.ai?r=aiguy) release pipeline. For a
 > new owner who wants Revenue Partner working in Slack on a private VPS, use
 > [`START-HERE.md`](../START-HERE.md) and [`SLACK-SETUP.md`](SLACK-SETUP.md).
 
@@ -20,9 +20,9 @@ Local:
 - Python 3.11
 - `uv`
 - Git
-- network access to the authenticated Orgo API
+- network access to the authenticated [Orgo](https://orgo.ai?r=aiguy) API
 
-Orgo:
+[Orgo](https://orgo.ai?r=aiguy):
 
 - API key with template validation/build access;
 - workspace ID;
@@ -58,7 +58,7 @@ Application-level build dependencies are pinned by Python locks and checksum con
 REVENUE_PARTNER_VERIFY_PYTHON=/absolute/path/to/trusted/python3.11 bash .github/scripts/verify_release
 ```
 
-Hosted CI uses this same launcher with the absolute interpreter supplied by the pinned `setup-python` action. The non-Python launcher rejects mutable/untracked source, archives one exact Git-index tree, clears Python/pip/proxy/certificate startup contamination, and invokes an isolated interpreter. It creates a disposable environment from `requirements-ci.lock` under `--require-hashes`; parses exact-index YAML and skill frontmatter; scans exact-index credentials; validates links/assets; runs the Revenue Partner, Latitude telemetry, packaged Super Browser, and AgentPhone suites; compiles shipped Python; checks tracked and embedded shell programs; rechecks exact-tree parity; validates against the checksum-bound Orgo schema; assembles the template; and verifies the decoded assembled Super Browser payload.
+Hosted CI uses this same launcher with the absolute interpreter supplied by the pinned `setup-python` action. The non-Python launcher rejects mutable/untracked source, archives one exact Git-index tree, clears Python/pip/proxy/certificate startup contamination, and invokes an isolated interpreter. It creates a disposable environment from `requirements-ci.lock` under `--require-hashes`; parses exact-index YAML and skill frontmatter; scans exact-index credentials; validates links/assets; runs the Revenue Partner, Latitude telemetry, packaged Super Browser, and AgentPhone suites; compiles shipped Python; checks tracked and embedded shell programs; rechecks exact-tree parity; validates against the checksum-bound [Orgo](https://orgo.ai?r=aiguy) schema; assembles the template; and verifies the decoded assembled Super Browser payload.
 
 Expected result:
 
@@ -189,13 +189,13 @@ Ask the live agent to:
 - Template publication/build: not completed; the authenticated workspace returned `403 UPGRADE_REQUIRED` because template publishing requires Scale or higher.
 - Computer launch/live smoke: not completed because no published template exists.
 
-This repository does not claim a live Orgo deployment until publication, build, launch, and live smoke all pass.
+This repository does not claim a live [Orgo](https://orgo.ai?r=aiguy) deployment until publication, build, launch, and live smoke all pass.
 
 ## Troubleshooting
 
 ### `403 UPGRADE_REQUIRED`
 
-The credential is valid but the account lacks template-publishing entitlement. Upgrade the Orgo workspace to the required tier, then rerun `--build` without changing repository bytes.
+The credential is valid but the account lacks template-publishing entitlement. Upgrade the [Orgo](https://orgo.ai?r=aiguy) workspace to the required tier, then rerun `--build` without changing repository bytes.
 
 ### `409` on publication
 

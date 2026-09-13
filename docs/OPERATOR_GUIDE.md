@@ -70,7 +70,7 @@ Do not start all channels simultaneously by default. Begin with the strongest ev
 
 ### Production connector activation
 
-Writable MCP connectors and executable CLIs for Orgo, Composio, AgentMail, AgentPhone, AgentCard, Linear, Spotify, and X do not ship in the runtime; the removed Orgo Desktop plugin/client/CLI also does not ship. Remote platform toolsets omit generic terminal, code-execution, scheduling, delegation, browser, computer-use, media-generation, and connector-control paths. A key, login, flag change, restart, approval record, or chat request cannot activate production execution in this immutable image. Enabling any connector requires operator-controlled source/configuration changes, complete verification, a fresh exact-tree review, a rebuilt image, and a new release.
+Writable MCP connectors and executable CLIs for [Orgo](https://orgo.ai?r=aiguy), Composio, AgentMail, AgentPhone, AgentCard, Linear, Spotify, and X do not ship in the runtime; the removed [Orgo](https://orgo.ai?r=aiguy) Desktop plugin/client/CLI also does not ship. Remote platform toolsets omit generic terminal, code-execution, scheduling, delegation, browser, computer-use, media-generation, and connector-control paths. A key, login, flag change, restart, approval record, or chat request cannot activate production execution in this immutable image. Enabling any connector requires operator-controlled source/configuration changes, complete verification, a fresh exact-tree review, a rebuilt image, and a new release.
 
 ## 4. Prepare research and drafts
 

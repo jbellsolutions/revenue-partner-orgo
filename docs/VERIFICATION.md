@@ -18,10 +18,10 @@ Older candidate hashes and artifact sizes are intentionally not presented as cur
 | Gate | Result | Evidence boundary |
 |---|---|---|
 | Focused campaign approval regression | Passed | Production/draft-smuggling variants stop at `awaiting_approval`; provider sentinel not reached |
-| Revenue Partner test suite | 93/93 passed | Current Orgo Startup profile, beginner setup, A2A, builder, behavior, exact Git-index credential scan, exact serialized publication-body evidence, payload, safe env, locked bootstrap, provider hard stops, approval boundaries, telemetry, shell syntax, and immutable dependency evidence; real Chromium fixture execution remains an image-build live-smoke gate, and live browser/channel checks remain separate deployment gates |
+| Revenue Partner test suite | 93/93 passed | Current [Orgo](https://orgo.ai?r=aiguy) Startup profile, beginner setup, A2A, builder, behavior, exact Git-index credential scan, exact serialized publication-body evidence, payload, safe env, locked bootstrap, provider hard stops, approval boundaries, telemetry, shell syntax, and immutable dependency evidence; real Chromium fixture execution remains an image-build live-smoke gate, and live browser/channel checks remain separate deployment gates |
 | Latitude telemetry suite | 7/7 passed | Reasoning metadata, canonical fixed ingest origin, environment override rejection, no-proxy/no-redirect transport, and thread-safe repeat registration |
 | Serialized publication request | Passed below endpoint ceiling | Canonical publish serializer enforces `< 1,000,000` bytes on the default CI builder path; exact post-freeze bytes belong in the release manifest |
-| Deterministic payload inventory | 33 files; passed | Dropped from 109 to 33 files when the vendored Super Browser left the image. Generated `build/`, `dist/`, `node_modules/`, cache, and `*.egg-info` paths excluded; model-callable Orgo Desktop plugin/client paths are absent |
+| Deterministic payload inventory | 33 files; passed | Dropped from 109 to 33 files when the vendored Super Browser left the image. Generated `build/`, `dist/`, `node_modules/`, cache, and `*.egg-info` paths excluded; model-callable [Orgo](https://orgo.ai?r=aiguy) Desktop plugin/client paths are absent |
 | AgentPhone ordering/media/webhook boundary | 17/17 passed | Immutable network/tunnel/main hard stops plus event ordering, direct-audience binding, signed group-webhook rejection before job creation, retained exact-origin/no-redirect defense-in-depth, approved-root, arbitrary-path, traversal, symlink, private-cache, arbitrary remote attachment rejection, and pre-read webhook-size controls |
 
 | Python compilation | Passed | Builder, tests, bridges, packaged source |
@@ -30,11 +30,11 @@ Older candidate hashes and artifact sizes are intentionally not presented as cur
 | Markdown/HTML local links and assets | 98 resolved | Count derived by `.github/scripts/check_markdown_links.py`; Markdown links/images plus HTML `src`/`href` references |
 | Exact candidate export | Passed | Non-Python launcher rejects tracked/index differences and non-ignored untracked files, captures `git write-tree`, verifies archive parity, and runs all tests/builds inside that export |
 | Local JSON Schema | Passed | Disposable environment populated from `requirements-ci.lock` under `--require-hashes` |
-| Authenticated Orgo validation | Passed for this exact tree | `POST /api/templates/validate` returned HTTP `200` with `ok: true`, `api_version: orgo.ai/v1`, the echoed `revenue-partner-agent@1.0.1` identity, and the bound 22-entry file inventory. Exact bytes below. Schema acceptance only — not publication, image readiness, launch, or live runtime |
+| Authenticated [Orgo](https://orgo.ai?r=aiguy) validation | Passed for this exact tree | `POST /api/templates/validate` returned HTTP `200` with `ok: true`, `api_version: orgo.ai/v1`, the echoed `revenue-partner-agent@1.0.1` identity, and the bound 22-entry file inventory. Exact bytes below. Schema acceptance only — not publication, image readiness, launch, or live runtime |
 | Resolved body | Recorded in release notes | Exact final candidate output |
 | Exact staged credential scan | 0 matches | Actual supplied values and credential-shape patterns |
 | Independent security/correctness review | Recorded in release notes | Exact immutable release candidate |
-| Orgo template publication | Blocked by account tier | `403 UPGRADE_REQUIRED`; no publication reference/digest. Publishing requires an Orgo **Scale** plan; the authenticated workspace is `hacker_v2`. Independently confirmed read-side: `GET /api/templates` returns `{"templates":[]}` and `GET /api/templates/default/revenue-partner-agent/1.0.1` returns `404 not found` |
+| [Orgo](https://orgo.ai?r=aiguy) template publication | Blocked by account tier | `403 UPGRADE_REQUIRED`; no publication reference/digest. Publishing requires an [Orgo](https://orgo.ai?r=aiguy) **Scale** plan; the authenticated workspace is `hacker_v2`. Independently confirmed read-side: `GET /api/templates` returns `{"templates":[]}` and `GET /api/templates/default/revenue-partner-agent/1.0.1` returns `404 not found` |
 | Image build | Not run | Publication did not occur. The install program itself was executed on a provisioned computer; see provisioned-runtime evidence, which is a separate and weaker gate |
 | Computer launch | Not run | No published template |
 | Live smoke | Not run | No live computer |
@@ -66,7 +66,7 @@ proof. Publication remains blocked by account tier, and the account holds no pub
 
 The build-time install script and boot hooks were executed directly on a provisioned
 Linux x86_64 computer by staging the assembled `files[]` inventory and payload to their
-declared paths, then running `apps[].install`. This is **not** an Orgo template image
+declared paths, then running `apps[].install`. This is **not** an [Orgo](https://orgo.ai?r=aiguy) template image
 build: no template was published, no image was built, and no golden snapshot exists. It
 is a separate, weaker gate that exercises the same install program the image build would
 run, and it is recorded separately for exactly that reason.
@@ -161,9 +161,9 @@ The retained focused upstream test evidence is limited. This repository does not
 Allowed:
 
 - “GitHub source published and CI verified” after remote readback and CI pass.
-- “Orgo schema validated” after authenticated `200`.
-- “Orgo template published” only after the response binds the exact `namespace/name@version` reference, a server digest matching the signed publication bytes, and a published timestamp, validated from a bounded response.
+- “[Orgo](https://orgo.ai?r=aiguy) schema validated” after authenticated `200`.
+- “[Orgo](https://orgo.ai?r=aiguy) template published” only after the response binds the exact `namespace/name@version` reference, a server digest matching the signed publication bytes, and a published timestamp, validated from a bounded response.
 - “Image ready” only after immutable-reference remote readback matches the signed reference/digest, the build response binds the same reference/digest with a `building` or `ready` status, and a second-readback-gated bounded event stream for that exact reference reaches explicit success/ready before the absolute deadline.
 - “Live deployment proven” only after another immutable-reference remote readback matches the signed bytes, launch submits that reference, and a matching computer ID, workspace ID, runtime, and conversational smoke tests pass.
 
-Current 1.0.1 status is **implemented, locally verified, authenticated-schema-validated for the exact tree `e1cba905`, and install-verified on a provisioned computer whose runtime was then manually corrected and is not reproducible from this tree; exact GitHub publication/review evidence is release-bound; not yet published, image-built, or live on Orgo**.
+Current 1.0.1 status is **implemented, locally verified, authenticated-schema-validated for the exact tree `e1cba905`, and install-verified on a provisioned computer whose runtime was then manually corrected and is not reproducible from this tree; exact GitHub publication/review evidence is release-bound; not yet published, image-built, or live on [Orgo](https://orgo.ai?r=aiguy)**.

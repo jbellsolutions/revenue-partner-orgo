@@ -1,4 +1,4 @@
-# Revenue Partner on Orgo: the simple walkthrough
+# Revenue Partner on [Orgo](https://orgo.ai?r=aiguy): the simple walkthrough
 
 This version gives Revenue Partner its own visible cloud computer. It stays on,
 keeps its files and memory, answers through Slack or Telegram, and can use the
@@ -12,7 +12,7 @@ facts and API map are in [ORGO-REFERENCE.md](ORGO-REFERENCE.md), grounded in
 
 ## What the setup agent does
 
-1. Open the Orgo workspace and launch an 8 GB Linux computer from
+1. Open the [Orgo](https://orgo.ai?r=aiguy) workspace and launch an 8 GB Linux computer from
    `system/hermes-agent@1.0.0`.
 2. Name it `ai-guy-revenue-partner`.
 3. Open its terminal and run:
@@ -42,12 +42,12 @@ their accounts.
 
 ## Why this works on Startup
 
-Orgo's Startup plan can launch Orgo-maintained templates, including Hermes.
+[Orgo](https://orgo.ai?r=aiguy)'s Startup plan can launch [Orgo](https://orgo.ai?r=aiguy)-maintained templates, including Hermes.
 Private custom golden-template publishing is a Scale feature, so this repository
 is a reproducible setup layer on top of the maintained Hermes template. The
 resulting computer is still persistent and can be cloned after it is configured.
 
-Current Orgo facts must be rechecked at deployment time using the official
+Current [Orgo](https://orgo.ai?r=aiguy) facts must be rechecked at deployment time using the official
 [`llms.txt`](https://docs.orgo.ai/llms.txt). The repository's selected computer
 shape is 8 GB RAM, 2 vCPU, and 40 GB disk; it does not claim that plan limits or
 pricing will remain unchanged.

@@ -17,7 +17,7 @@ moving, prepares proposals, organizes the work, and gives people time back.
 
 </div>
 
-> **Orgo partner offer:** By the way, if you use our Orgo link, you’ll get 25% off your first three months on a monthly plan or your first year on a yearly plan. Add-ons are not discounted.
+> **[Orgo](https://orgo.ai?r=aiguy) partner offer:** Get 25% off your first three months on a monthly plan or your first year on a yearly plan. Add-ons are not discounted.
 
 <div align="center">
 
@@ -39,7 +39,7 @@ use practical AI to remove busywork, keep important work moving, and make more
 room to think, sell, serve customers, and live life.
 
 It is not another dashboard to babysit. It is an operator you can talk to in
-plain language from Slack, Telegram, or its own visible Orgo computer.
+plain language from Slack, Telegram, or its own visible [Orgo](https://orgo.ai?r=aiguy) computer.
 
 <table>
 <tr>
@@ -96,7 +96,7 @@ every technical step, and walk me through only the private account approvals.
 Finish when it answers a real Slack message and passes the Orgo verification.
 ```
 
-The setup agent launches Orgo's maintained Hermes computer, installs the exact
+The setup agent launches [Orgo](https://orgo.ai?r=aiguy)'s maintained Hermes computer, installs the exact
 reviewed Hermes release and Revenue Partner profile, connects the accounts the
 owner chooses, and proves the result. No public webhook is required. No private
 token belongs in GitHub.
@@ -105,7 +105,7 @@ token belongs in GitHub.
 
 | Layer | Included |
 |---|---|
-| **Private computer** | Persistent Orgo Linux desktop with visible terminal, browser, files, and agent memory |
+| **Private computer** | Persistent [Orgo](https://orgo.ai?r=aiguy) Linux desktop with visible terminal, browser, files, and agent memory |
 | **Revenue brain** | Fit gates, offer and ICP context, approved claims, campaign rules, Money Desk reporting, and GTM operating procedures |
 | **Conversation** | Slack Agent view, threaded channel work, Telegram, and the local Hermes chat |
 | **Everyday tools** | Research, browser, computer use, files, documents, code, vision, images, tasks, schedules, memory, and delegation |
@@ -122,7 +122,7 @@ launching a campaign remains behind an explicit approval step.
 
 ## The simple setup
 
-1. Launch one Orgo Hermes computer named `ai-guy-revenue-partner`.
+1. Launch one [Orgo](https://orgo.ai?r=aiguy) Hermes computer named `ai-guy-revenue-partner`.
 2. Run `./orgo/setup.sh` from this repository.
 3. Connect Slack and Telegram with `./orgo/connect-channels.sh`.
 4. Connect Calendar, inboxes, files, CRM, and proposals with
@@ -131,14 +131,14 @@ launching a campaign remains behind an explicit approval step.
 6. Run `./orgo/verify.sh` and send a real message.
 
 The screen-by-screen version is in [START-HERE.md](START-HERE.md). The precise
-Orgo handoff is in [docs/ORGO-SETUP.md](docs/ORGO-SETUP.md).
+[Orgo](https://orgo.ai?r=aiguy) handoff is in [docs/ORGO-SETUP.md](docs/ORGO-SETUP.md).
 
 ### Startup-plan packaging
 
-Orgo Startup launches Orgo-maintained templates. Publishing private custom
+[Orgo](https://orgo.ai?r=aiguy) Startup launches [Orgo](https://orgo.ai?r=aiguy)-maintained templates. Publishing private custom
 golden templates is a Scale feature, so this repository deliberately installs
 as a reproducible profile on `system/hermes-agent@1.0.0`. After setup, the
-configured computer remains persistent and can be cloned from Orgo.
+configured computer remains persistent and can be cloned from [Orgo](https://orgo.ai?r=aiguy).
 
 ---
 
@@ -150,7 +150,7 @@ configured computer remains persistent and can be cloned from Orgo.
 | [Setup-agent brief](AGENTS.md) | Self-contained instructions for Codex, Claude Code, and other setup agents |
 | [`llms.txt`](llms.txt) | Machine-readable summary, entry points, contract, and source links |
 | [Orgo setup](docs/ORGO-SETUP.md) | Computer shape, install, connections, proof, and Startup-plan notes |
-| [Orgo reference](docs/ORGO-REFERENCE.md) | Applied Orgo `llms.txt`, API operations, template rules, and sizing notes |
+| [Orgo reference](docs/ORGO-REFERENCE.md) | Applied [Orgo](https://orgo.ai?r=aiguy) `llms.txt`, API operations, template rules, and sizing notes |
 | [Slack setup](docs/SLACK-SETUP.md) | App manifest, tokens, Member ID, direct message, and channel-thread test |
 | [Tools](docs/TOOLS.md) | Calendar, inboxes, files, CRM, business apps, proposals, and safe tests |
 | [Skills](docs/SKILLS.md) | Included skills, the [Hermes Skills system](https://hermes-agent.nousresearch.com/docs/skills), audits, and updates |
@@ -159,9 +159,9 @@ configured computer remains persistent and can be cloned from Orgo.
 
 The older VPS and custom-template engineering assets remain in this copy for
 advanced operators and source parity. The beginner path above is the supported
-Orgo Startup walkthrough. Optional connections activate only when configured;
+[Orgo](https://orgo.ai?r=aiguy) Startup walkthrough. Optional connections activate only when configured;
 missing credentials never become placeholder data or silent permission.
 
 MIT licensed. Hermes Agent is maintained by Nous Research. This repository is
-not affiliated with Orgo, Nous Research, Slack, Telegram, Composio, PandaDoc,
+not affiliated with [Orgo](https://orgo.ai?r=aiguy), Nous Research, Slack, Telegram, Composio, PandaDoc,
 OpenRouter, or Tailscale.

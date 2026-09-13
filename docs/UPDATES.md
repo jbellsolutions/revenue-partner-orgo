@@ -9,7 +9,7 @@ The recommended VPS path is pinned to:
 - official multi-platform image digest
   `sha256:e0df6adebddf29b91112aefc999d4aaf6846c9eb544faca5672a16a13590ff79`.
 
-The older Orgo template remains deliberately locked to Hermes 0.18.0 and its
+The older [Orgo](https://orgo.ai?r=aiguy) template remains deliberately locked to Hermes 0.18.0 and its
 reviewed dependency graph. It is an advanced deterministic release path, not
 the recommended new Slack installation.
 
@@ -31,7 +31,7 @@ The reviewed 0.20.6 baseline adds or carries forward:
 Fresh installs also select the full Hermes CLI and Slack toolsets, enable lean
 tail compression, and stage agent-created skill changes for owner review. The
 guided `deploy/connect-tools.sh` path adds current Composio Connect and regional
-PandaDoc MCP configuration without changing the legacy Orgo release.
+PandaDoc MCP configuration without changing the legacy [Orgo](https://orgo.ai?r=aiguy) release.
 
 ## Update the container
 

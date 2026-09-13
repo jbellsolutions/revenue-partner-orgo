@@ -1,7 +1,7 @@
 # Tools and Business Connections
 
 This guide applies to the recommended Hermes Agent 0.20.6 VPS installation.
-It is additive: it does not change the older deterministic Orgo release or its
+It is additive: it does not change the older deterministic [Orgo](https://orgo.ai?r=aiguy) release or its
 documented connector boundaries.
 
 ## What Revenue Partner starts with

@@ -59,7 +59,7 @@ Fresh explicit approval is required before:
 
 Credentials prove connectivity only. A draft, plan, research request, stored plan flag, or delegated specialist task is not authority.
 
-Hermes runs with `approvals.mode: manual`, MCP reload and destructive slash confirmations enabled, and hook auto-accept disabled. Release-listed Orgo, Composio, AgentMail, AgentPhone, AgentCard, and X connector runtimes/CLIs are absent; the hash-locked upstream Hermes wheel's Spotify, Slack, Discord, and Linear catalog surfaces are removed by a version-bound, fail-closed image-build pruner before Hermes executes. Their credentials are rejected by the safe-environment bridge, including explicit `--only` selection. Remote platform toolsets omit terminal, code execution, scheduling, delegation, browser, computer-use, media-generation, and connector-control surfaces. Enabling one of those named connectors requires separately reviewed source/configuration changes, a rebuilt image, and a new release. Super Browser omits approval from MCP, CLI, Slack, handoff, and agent command surfaces; approval-required runs cannot execute inside this template runtime.
+Hermes runs with `approvals.mode: manual`, MCP reload and destructive slash confirmations enabled, and hook auto-accept disabled. Release-listed [Orgo](https://orgo.ai?r=aiguy), Composio, AgentMail, AgentPhone, AgentCard, and X connector runtimes/CLIs are absent; the hash-locked upstream Hermes wheel's Spotify, Slack, Discord, and Linear catalog surfaces are removed by a version-bound, fail-closed image-build pruner before Hermes executes. Their credentials are rejected by the safe-environment bridge, including explicit `--only` selection. Remote platform toolsets omit terminal, code execution, scheduling, delegation, browser, computer-use, media-generation, and connector-control surfaces. Enabling one of those named connectors requires separately reviewed source/configuration changes, a rebuilt image, and a new release. Super Browser omits approval from MCP, CLI, Slack, handoff, and agent command surfaces; approval-required runs cannot execute inside this template runtime.
 
 ## Super Browser enforcement
 
@@ -112,7 +112,7 @@ Customer-specific facts remain unset in the golden template. Raw research captur
 - Super Browser installs its complete transitive graph under `--require-hashes`, then registers reviewed source and metadata directly with the standard library; no local pip project install, setuptools, wheel, PEP 517, dependency resolution, build isolation, or network is used.
 - Floating `latest` downloads, pipe-to-shell installers, unpinned npm fallbacks, and runtime QR installs are prohibited by regression tests.
 
-These controls cover application-level inputs, not the Orgo base image or apt repository snapshot. See [`SUPPLY_CHAIN.md`](SUPPLY_CHAIN.md).
+These controls cover application-level inputs, not the [Orgo](https://orgo.ai?r=aiguy) base image or apt repository snapshot. See [`SUPPLY_CHAIN.md`](SUPPLY_CHAIN.md).
 
 ## Validation and release controls
 

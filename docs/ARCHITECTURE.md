@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Revenue Partner Agent is an operator-facing GTM orchestrator packaged as a Hermes Agent template for an Orgo cloud computer. It coordinates one Money Desk across owned-demand recovery and new-demand acquisition while keeping source claims, customer facts, live results, and production approvals separate.
+Revenue Partner Agent is an operator-facing GTM orchestrator packaged as a Hermes Agent template for an [Orgo](https://orgo.ai?r=aiguy) cloud computer. It coordinates one Money Desk across owned-demand recovery and new-demand acquisition while keeping source claims, customer facts, live results, and production approvals separate.
 
 ## System overview
 
@@ -93,7 +93,7 @@ Local outbound attachments are confined to an operator-owned generated-media dir
 
 ### Template builder
 
-`build_template.py` assembles a curated payload, validates the local JSON Schema, and orchestrates operation-specific lifecycle requests without receiving `ORGO_API_KEY`. Authenticated commands enter through `release_entry.py`, which forks an isolated broker retaining the key and execs the builder without it. The broker independently verifies signed current bytes and one-use operation intent before constructing any authenticated Orgo transport.
+`build_template.py` assembles a curated payload, validates the local JSON Schema, and orchestrates operation-specific lifecycle requests without receiving `ORGO_API_KEY`. Authenticated commands enter through `release_entry.py`, which forks an isolated broker retaining the key and execs the builder without it. The broker independently verifies signed current bytes and one-use operation intent before constructing any authenticated [Orgo](https://orgo.ai?r=aiguy) transport.
 
 Validation and lifecycle calls fail closed. A version collision is an error rather than permission to reuse unknown remote bytes.
 
@@ -106,7 +106,7 @@ Validation and lifecycle calls fail closed. A version collision is an error rath
 | Agent → browser/provider | Policy-classified read-only local scope | Draft wording, generic intent, or approval records presented as authority | Runtime policy recomputation and adapter hard stops |
 | Phone → agent | Allowlisted sender | Unknown sender | Deny-all bridge |
 | Environment → process | Allowlisted parsed keys | Shell syntax and unmanaged keys | Safe environment bridge |
-| Template → Orgo | Locally or remotely schema-validated payload | Unvalidated or collided version | Fail-closed builder |
+| Template → [Orgo](https://orgo.ai?r=aiguy) | Locally or remotely schema-validated payload | Unvalidated or collided version | Fail-closed builder |
 
 ## Data flow
 

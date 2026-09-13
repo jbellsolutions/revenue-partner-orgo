@@ -1,36 +1,36 @@
-# Orgo reference for Revenue Partner
+# [Orgo](https://orgo.ai?r=aiguy) reference for Revenue Partner
 
-Last checked against the official Orgo documentation: **August 30, 2026**.
+Last checked against the official [Orgo](https://orgo.ai?r=aiguy) documentation: **August 30, 2026**.
 
-The current machine-readable source is Orgo's
+The current machine-readable source is [Orgo](https://orgo.ai?r=aiguy)'s
 [`llms.txt`](https://docs.orgo.ai/llms.txt). An installation agent should check
 that source before deployment because available plans, limits, templates, and
 API fields can change. If it conflicts with this page, the current official
 documentation wins unless following it would weaken this repository's security
 rules.
 
-## What Orgo provides
+## What [Orgo](https://orgo.ai?r=aiguy) provides
 
-Orgo provides the persistent Linux computer. Revenue Partner and Hermes run
+[Orgo](https://orgo.ai?r=aiguy) provides the persistent Linux computer. Revenue Partner and Hermes run
 inside it. The computer keeps its files and `~/.hermes` state while the owner's
 personal computer is off.
 
-Orgo documents these relevant capabilities:
+[Orgo](https://orgo.ai?r=aiguy) documents these relevant capabilities:
 
 - create and list workspaces;
 - create, inspect, start, stop, restart, clone, resize, and move computers;
 - launch a computer from a curated template by passing `template_ref`;
 - run terminal commands and inspect screenshots through authenticated APIs;
-- connect through the Orgo dashboard, CLI, SDK, or MCP server.
+- connect through the [Orgo](https://orgo.ai?r=aiguy) dashboard, CLI, SDK, or MCP server.
 
 The official [Hermes guide](https://docs.orgo.ai/guides/hermes) also explains
-that Orgo computers do not have a public inbound hostname. Revenue Partner
+that [Orgo](https://orgo.ai?r=aiguy) computers do not have a public inbound hostname. Revenue Partner
 therefore uses Slack Socket Mode and Telegram long-polling. It does not require
 a public Slack or Telegram webhook.
 
 ## The plain-English deployment
 
-1. Sign in to the intended Orgo account and confirm it can launch the curated
+1. Sign in to the intended [Orgo](https://orgo.ai?r=aiguy) account and confirm it can launch the curated
    Hermes template.
 2. Find or create the customer workspace. For the AI Guy installation, use
    `AI Guy`.
@@ -77,12 +77,12 @@ deployment manifest:
 ```
 
 Use an account-wide key only for the initial workspace lookup or creation. A
-workspace-scoped key is preferable for later automation because Orgo documents
+workspace-scoped key is preferable for later automation because [Orgo](https://orgo.ai?r=aiguy) documents
 that it cannot access another workspace.
 
 ## Why this is not a custom template
 
-Orgo's [template documentation](https://docs.orgo.ai/guides/templates/introduction)
+[Orgo](https://orgo.ai?r=aiguy)'s [template documentation](https://docs.orgo.ai/guides/templates/introduction)
 states that curated `system` templates can launch on paid plans, while publishing
 and building a private custom template requires Scale. This repository keeps the
 Startup-compatible path: launch the curated Hermes computer, then apply the
@@ -91,7 +91,7 @@ reviewed repository overlay.
 ## Sizing note
 
 The repository requests 8 GB RAM, 2 vCPU, and 40 GB disk. This is the selected
-Startup-compatible footprint. Orgo's general Hermes guide may recommend more
+Startup-compatible footprint. [Orgo](https://orgo.ai?r=aiguy)'s general Hermes guide may recommend more
 CPU for heavier workloads; plan limits and pricing must be checked at deployment
 time rather than inferred from this repository.
 

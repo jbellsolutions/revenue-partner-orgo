@@ -1,8 +1,10 @@
-# Start Here: Revenue Partner on an Orgo computer
+# Start Here: Revenue Partner on an [Orgo](https://orgo.ai?r=aiguy) computer
+
+> **[Orgo](https://orgo.ai?r=aiguy) partner offer:** Get 25% off your first three months on a monthly plan or your first year on a yearly plan. Add-ons are not discounted.
 
 This walkthrough is for someone creating a cloud computer for the first time.
 You do not need to know server commands. Give this repository to Codex or Claude
-Code and let the setup agent operate Orgo and the terminal while the owner
+Code and let the setup agent operate [Orgo](https://orgo.ai?r=aiguy) and the terminal while the owner
 approves account access.
 
 Setup agents should also read [AGENTS.md](AGENTS.md). It contains the complete
@@ -28,18 +30,18 @@ orgo/verify.sh passes.
 
 The setup agent confirms:
 
-- the Orgo account is on Startup or another paid plan;
+- the [Orgo](https://orgo.ai?r=aiguy) account is on Startup or another paid plan;
 - the intended Slack workspace is available;
 - the owner can create a Telegram bot if Telegram is wanted;
 - a demonstration model account or the customer's own model account is ready;
 - Calendar, inbox, and PandaDoc can be connected after the first message works.
 
-Private values are entered only into hidden prompts on the Orgo computer. They
+Private values are entered only into hidden prompts on the [Orgo](https://orgo.ai?r=aiguy) computer. They
 never go in GitHub, screenshots, webinar chat, notes, or copy-and-paste prompts.
 
 ## Step 1 — Create the computer
 
-In Orgo, create or open the customer workspace. Launch one Linux computer from
+In [Orgo](https://orgo.ai?r=aiguy), create or open the customer workspace. Launch one Linux computer from
 the maintained template `system/hermes-agent@1.0.0` with:
 
 - Name: `ai-guy-revenue-partner`
@@ -48,7 +50,7 @@ the maintained template `system/hermes-agent@1.0.0` with:
 - Disk: 40 GB
 - Display: 1440 × 900
 
-Wait until Orgo says the computer is running, then open its visible desktop and
+Wait until [Orgo](https://orgo.ai?r=aiguy) says the computer is running, then open its visible desktop and
 Terminal. The owner does not need to create firewall rules, a public website, or
 an inbound Slack webhook.
 
@@ -65,7 +67,7 @@ cd revenue-partner-orgo
 The installer pins the reviewed Hermes 0.20.6 release, installs the Revenue
 Partner identity, knowledge structure, GTM skill, browser specialists, full
 operator toolset, approval rules, and the safe A2A foundation. It also places
-simple launch and connection icons on the Orgo desktop.
+simple launch and connection icons on the [Orgo](https://orgo.ai?r=aiguy) desktop.
 
 ## Step 3 — Connect the model
 
