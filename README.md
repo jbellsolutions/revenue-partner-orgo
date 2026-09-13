@@ -2,7 +2,7 @@
 
 <img src="docs/assets/revenue-partner-hero-v2.webp" alt="Revenue Partner connects revenue, operations, calendar, inbox, customers, proposals, and daily priorities" width="1000"/>
 
-# Revenue Partner for Orgo
+# Revenue Partner for [Orgo](https://orgo.ai?r=aiguy)
 
 ### Practical AI for revenue, operations, and everyday life.
 
