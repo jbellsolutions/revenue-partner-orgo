@@ -1,7 +1,9 @@
+> Current setup and live app-name verification: [shared walkthrough](../onboarding/GUIDE.md). The setup AI handles these technical steps and obtains consent in Slack when required.
+
 # Slack Setup: Screen by Screen
 
-This is the exact Slack path for the recommended VPS installation. It uses
-Socket Mode, so the VPS does not need a public webhook or Slack-facing port.
+This is the Slack path for the supported Orgo installation. It uses Socket
+Mode, so the Orgo computer does not need a public webhook or Slack-facing port.
 
 ## Before the installer starts
 
@@ -12,10 +14,15 @@ The owner needs:
 - their Slack Member ID;
 - one or more channels where the app may be invited.
 
-The included [`slack-manifest.json`](../slack-manifest.json) was generated from
-Hermes Agent 0.20.6 with Agent view. `deploy/setup.sh` generates another copy
-from the exact installed image at `/srv/revenue-partner/data/slack-manifest.json`.
-Use that generated copy when available.
+Run `./orgo-onboard setup` (or the compatible `./orgo/setup.sh`) first. The default
+name is **Revenue Partner**; `--name "Acme Revenue"` selects a full custom name.
+The older `--name-prefix` interface retains compatibility with Revenue Agent names.
+The installer uses the included [`slack-manifest.json`](../slack-manifest.json)
+as a base and writes the personalized version to
+`$HERMES_HOME/slack-manifest.json` (normally `~/.hermes/slack-manifest.json`).
+It sets both the app name and bot display name from the saved installation name,
+retaining the reviewed Hermes Agent 0.21.2 Agent view, permissions, events, and commands.
+Use the personalized file printed by setup, not the repository's base file.
 
 ## 1. Create the app from the manifest
 
@@ -24,7 +31,8 @@ Use that generated copy when available.
 3. Select **From an app manifest**.
 4. Pick the workspace.
 5. Choose the **JSON** tab.
-6. Paste the complete contents of `slack-manifest.json`.
+6. Paste the complete contents of the personalized `~/.hermes/slack-manifest.json`
+   (or the path printed by setup when `HERMES_HOME` is customized).
 7. Select **Next**, review the requested access, then select **Create**.
 
 The manifest enables Slack's current Agent messaging experience. Slack warns
@@ -71,23 +79,28 @@ Hermes denies Slack users by default. To copy the owner's Member ID:
 For more than one owner, enter comma-separated Member IDs. Do not use a display
 name or email address.
 
-## 5. Choose a home channel
+## 5. Connect Slack and optionally choose a home channel
+
+Run `./orgo/connect-channels.sh`, choose Slack, and provide the tokens and Slack
+Member ID at its private prompts. For the examples below, replace **Revenue
+Agent** with the full installed name, such as **Acme Revenue Partner**.
 
 The home channel receives scheduled reports and proactive messages. To use one:
 
 1. Open the intended channel.
 2. Open **Channel details → About**.
 3. Copy the Channel ID at the bottom.
-4. Paste the `C…` or `G…` value into the optional installer prompt.
-5. In that channel, run `/invite @Revenue Partner`.
+4. Have the setup agent store the `C…` or `G…` value as `SLACK_HOME_CHANNEL` in
+   the private Hermes environment and restart the gateway.
+5. In that channel, run `/invite @Revenue Partner`, selecting the actual named app.
 
-Skip the home-channel prompt if scheduled Slack delivery is not needed yet.
+Skip this optional configuration if scheduled Slack delivery is not needed yet.
 
 ## 6. Test the actual Slack behavior
 
 ### Direct message
 
-Open **Apps → Revenue Partner** and send:
+Open **Apps → Revenue Partner** (or its full custom name) and send:
 
 ```text
 hello
@@ -103,7 +116,7 @@ Invite the app, then send:
 @Revenue Partner give me a one-sentence status
 ```
 
-In channels, an `@mention` starts the conversation. Revenue Partner replies in
+In channels, an `@mention` starts the conversation. The agent replies in
 a thread. Once it is active in that thread, follow-up replies do not need
 another mention.
 
@@ -117,25 +130,42 @@ multiple-choice question, Slack shows one-tap buttons plus an **Other…** choic
 
 ## 7. Keep Slack current
 
-After a repository runtime update, regenerate the manifest:
+For installations with saved naming settings, refresh the manifest from the
+current repository without reinstalling Hermes or changing the saved name:
 
 ```bash
-cd revenue-partner-agent
-./deploy/update.sh
+cd revenue-partner-orgo
+python3 orgo/identity.py manifest --hermes-home "${HERMES_HOME:-$HOME/.hermes}"
 ```
 
-Then open **Slack App Settings → Revenue Partner → Features → App Manifest →
-Edit**, paste `/srv/revenue-partner/data/slack-manifest.json`, and save. Reinstall
-the app if Slack requests it. This refreshes scopes, events, Agent view metadata,
-and newly added slash commands.
+Then open the same installed app in **Slack App Settings → Features → App
+Manifest → Edit**, paste the generated JSON, and save. Reinstall if Slack
+requests it. Generating a local manifest alone does not update Slack.
+
+Run `./orgo/verify.sh` to compare the saved name, local manifest, SOUL identity,
+and the bot associated with the actual token. It uses only `auth.test` and
+`users.info`, never sends a message, and never renames an app. Slack errors or
+mismatches fail verification without showing credentials. `--allow-unconnected`
+checks local naming only and explicitly skips the Slack read.
+
+Existing Orgo profiles without `revenue-agent-identity.json` retain their names
+and report that managed-name verification does not apply. Do not replace an
+existing app with the repository's default manifest just to adopt this feature.
+
+Slack has separate app and bot names. **Basic Information → Display Information**
+edits the app name; **App Home → Your App's Presence** edits the bot name. Changing
+these in Slack does not update the agent's SOUL. The supported installer uses the selected full name. Slack administrators still
+control their app settings; there is no background name enforcement.
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---|---|
-| App is offline | Run `docker logs --tail 100 revenue-partner` and verify both tokens were entered |
+| App is offline | Run `hermes gateway status` and verify both tokens were entered |
 | DM is ignored | Confirm the sender's exact Member ID is in `SLACK_ALLOWED_USERS` |
-| Channel mention is ignored | Run `/invite @Revenue Partner` in that channel |
+| Channel mention is ignored | Run `/invite @Revenue Partner` using the actual full app name |
+| Old name remains in Slack | Confirm the generated manifest was applied to the same app as the bot token, and check both app and bot name fields |
+| Name check cannot reach Slack | Check connection, token validity, and `users:read`; an unavailable check is not a successful name verification |
 | Commands are missing | Regenerate and reapply the manifest, then reinstall when prompted |
 | Replies appear outside the expected place | Begin with an `@mention` in the intended channel and continue in its thread |
 | A token was exposed | Revoke it immediately in Slack, generate a replacement, and rerun setup |

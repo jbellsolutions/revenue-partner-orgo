@@ -61,8 +61,8 @@ class CurrentInstallTests(unittest.TestCase):
         self.assertEqual(2, deployment["hardware"]["cpu"])
         setup = (ROOT / "orgo/setup.sh").read_text()
         for required in (
-            "v2026.8.27",
-            "5fc308a70719a83cccdbba4c0e39c23f5a8239d5",
+            "v2026.9.11",
+            "939e45c91d751fadd94dcd1b873ac3cb44846213",
             'platform_toolsets.slack=["hermes-slack","a2a"]',
             'platform_toolsets.telegram=["hermes-telegram","a2a"]',
             "skills.write_approval=true",

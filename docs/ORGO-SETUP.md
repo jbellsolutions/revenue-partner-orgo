@@ -1,3 +1,5 @@
+> Legacy custom-template reference. The supported Orgo installation and live verification contract is [the shared walkthrough](../onboarding/GUIDE.md). Do not use the disabled legacy phone bridge for new installs.
+
 # Revenue Partner on [Orgo](https://orgo.ai?r=aiguy): the simple walkthrough
 
 This version gives Revenue Partner its own visible cloud computer. It stays on,
@@ -22,6 +24,12 @@ facts and API map are in [ORGO-REFERENCE.md](ORGO-REFERENCE.md), grounded in
    cd revenue-partner-orgo
    ./orgo/setup.sh
    ```
+
+   The new agent defaults to **Revenue Agent**. An optional
+   `--name-prefix "Acme"` gives **Acme Revenue Agent** in Slack, its introduction,
+   and desktop labels. Setup prints the personalized Slack manifest path;
+   use that file when creating the Slack app. Repeat installs preserve the
+   saved name. Existing profiles are not automatically renamed.
 
 4. Connect the managed demonstration model or the customer's own model account.
 5. Run `./orgo/connect-channels.sh` and connect Slack first. Run it again to add

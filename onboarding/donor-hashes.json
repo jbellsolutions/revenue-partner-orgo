@@ -1,0 +1,10 @@
+{
+  "latitude-observer/plugin.yaml": [
+    "4bf0a7c9ad27ddc37b3d7f2dadc084207ae0e4226cca95be417ef9cc78925bb2"
+  ],
+  "latitude-observer/__init__.py": [
+    "0d47c8ae932f5771be860b5f01507c2dc901176b5315d668d2b8886b176a5ef0",
+    "37e7bea53d42db579714ea72755b85a19ee2b902a6377b2f6c4deca7e8adc6b9",
+    "4cfbb7be2c858066739b272aa54e24ece2510241abc21927c1f86573d51fb4d9"
+  ]
+}

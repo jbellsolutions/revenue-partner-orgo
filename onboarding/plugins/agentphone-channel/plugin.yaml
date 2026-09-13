@@ -1,0 +1,6 @@
+name: agentphone-channel
+label: AgentPhone SMS and voice
+kind: platform
+version: 2026.09.13.1
+description: Signed AgentPhone conversations through the running Hermes gateway.
+author: AI Guy

@@ -1,0 +1,23 @@
+{
+  "id": "revenue-partner",
+  "name": "Revenue Partner",
+  "purpose": "Revenue research, follow-up, CRM, calendars, inboxes and private proposal drafts.",
+  "runtime": "native",
+  "slack_manifests": [
+    "slack-manifest.json"
+  ],
+  "a2a_helper": "orgo/connect-a2a.sh",
+  "services": [
+    "honcho",
+    "latitude",
+    "agentphone",
+    "agentmail",
+    "composio",
+    "pandadoc",
+    "super-browser",
+    "scrapecreators",
+    "onepassword",
+    "a2a",
+    "agentcard"
+  ]
+}

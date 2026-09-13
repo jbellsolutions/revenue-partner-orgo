@@ -1,3 +1,5 @@
+> Legacy custom-template reference. The supported Orgo installation and live verification contract is [the shared walkthrough](../onboarding/GUIDE.md). Do not use the disabled legacy phone bridge for new installs.
+
 # Deployment Guide
 
 > This document covers the advanced deterministic [Orgo](https://orgo.ai?r=aiguy) release pipeline. For a

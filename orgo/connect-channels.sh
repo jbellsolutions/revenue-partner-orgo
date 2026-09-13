@@ -2,8 +2,11 @@
 # Guided Slack and Telegram connection for host-native Hermes on Orgo.
 set -euo pipefail
 
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
 ENV_FILE="$HERMES_HOME/.env"
+[ -f "$HERMES_HOME/SOUL.md" ] || { echo "Run orgo/setup.sh first." >&2; exit 1; }
+AGENT_DISPLAY_NAME="$(python3 "$REPO_DIR/orgo/identity.py" name --hermes-home "$HERMES_HOME")"
 mkdir -p "$HERMES_HOME"
 touch "$ENV_FILE"
 chmod 600 "$ENV_FILE"
@@ -21,14 +24,19 @@ upsert() {
   mv "$temp" "$ENV_FILE"
 }
 
-echo "Connect Revenue Partner"
+printf 'Connect %s\n' "$AGENT_DISPLAY_NAME"
 echo "Choose one channel now. You can run this helper again to add the other."
 echo "  1. Slack"
 echo "  2. Telegram"
 read -r -p "Choose 1 or 2: " choice
 case "$choice" in
   1)
-    echo "Create the app from slack-manifest.json in this repository."
+    if [ -f "$HERMES_HOME/revenue-agent-identity.json" ]; then
+      python3 "$REPO_DIR/orgo/identity.py" verify --hermes-home "$HERMES_HOME" --local-only
+      printf 'Create the app from this personalized JSON manifest: %s/slack-manifest.json\n' "$HERMES_HOME"
+    else
+      echo "Existing profile: keep its current Slack app and names. No rename is performed."
+    fi
     echo "Install it to the intended Slack workspace, then create an app-level"
     echo "token with connections:write. Private values are hidden while entered."
     bot="$(secret "Paste the xoxb- Bot Token")"

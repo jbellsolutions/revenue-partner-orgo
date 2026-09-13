@@ -1,0 +1,8 @@
+name: setup-evidence
+label: Private setup verification
+kind: standalone
+version: 2026.09.13.1
+description: Records metadata for successful optional service capability checks, never tool content.
+author: AI Guy
+hooks:
+  - post_tool_call

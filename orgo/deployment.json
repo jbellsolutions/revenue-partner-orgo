@@ -11,8 +11,8 @@
     "resolution": "1440x900x24"
   },
   "runtime": {
-    "hermes_release": "v2026.8.27",
-    "hermes_commit": "5fc308a70719a83cccdbba4c0e39c23f5a8239d5",
+    "hermes_release": "v2026.9.11",
+    "hermes_commit": "939e45c91d751fadd94dcd1b873ac3cb44846213",
     "a2a_port": 9900
   }
 }
