@@ -7,9 +7,27 @@ HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
 HERMES_TAG="v2026.8.27"
 HERMES_COMMIT="5fc308a70719a83cccdbba4c0e39c23f5a8239d5"
 HERMES_REPO="/usr/local/lib/hermes-agent"
+NAME_ARGS=()
 
 say() { printf '\n%s\n' "$*"; }
 fail() { printf '\nSetup stopped: %s\n' "$*" >&2; exit 1; }
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --name-prefix)
+      [ "$#" -ge 2 ] || fail "--name-prefix needs a value (use an empty string for Revenue Agent)"
+      NAME_ARGS=(--name-prefix "$2")
+      shift 2
+      ;;
+    --help|-h)
+      echo 'Usage: ./orgo/setup.sh [--name-prefix "Acme"]'
+      echo 'Names use <prefix> Revenue Agent; no prefix defaults to Revenue Agent.'
+      echo 'Priority: argument, AGENT_NAME_PREFIX environment, saved name, default.'
+      exit 0
+      ;;
+    *) fail "unknown option; use --help" ;;
+  esac
+done
 
 [ "$(uname -s)" = "Linux" ] || fail "this installer belongs on the Orgo Linux computer"
 if [ "$(id -u)" -eq 0 ]; then
@@ -19,7 +37,7 @@ else
   ELEVATE=(sudo)
 fi
 
-say "Revenue Partner for Orgo"
+say "Agent setup for Orgo"
 echo "This installs the agent profile and tools. Private account connections stay"
 echo "on this computer and are never written into the GitHub repository."
 
@@ -28,6 +46,9 @@ if ! command -v git >/dev/null 2>&1 || ! command -v curl >/dev/null 2>&1 || ! co
   "${ELEVATE[@]}" apt-get update -qq
   "${ELEVATE[@]}" apt-get install -y -qq ca-certificates curl git python3
 fi
+
+AGENT_DISPLAY_NAME="$(python3 "$REPO_DIR/orgo/identity.py" resolve --hermes-home "$HERMES_HOME" "${NAME_ARGS[@]}")"
+say "Installing $AGENT_DISPLAY_NAME"
 
 installed_commit=""
 if [ -d "$HERMES_REPO/.git" ]; then
@@ -44,8 +65,8 @@ else
 fi
 command -v hermes >/dev/null 2>&1 || fail "Hermes did not install correctly"
 
-say "3 of 5 — Installing the Revenue Partner profile and skills"
-python3 "$REPO_DIR/orgo/sync_seed.py" "$REPO_DIR" "$HERMES_HOME"
+say "3 of 5 — Installing the $AGENT_DISPLAY_NAME profile and skills"
+python3 "$REPO_DIR/orgo/sync_seed.py" "$REPO_DIR" "$HERMES_HOME" "${NAME_ARGS[@]}"
 chmod 700 "$HERMES_HOME"
 chmod 600 "$HERMES_HOME/SOUL.md" 2>/dev/null || true
 
@@ -70,16 +91,17 @@ for setting in \
   hermes config set "$key" "$value" >/dev/null
 done
 
-mkdir -p "$HOME/Desktop"
-install -m 0755 "$REPO_DIR/orgo/RevenuePartner.desktop" "$HOME/Desktop/RevenuePartner.desktop"
-install -m 0755 "$REPO_DIR/orgo/RevenuePartnerSetup.desktop" "$HOME/Desktop/RevenuePartnerSetup.desktop"
+python3 "$REPO_DIR/orgo/identity.py" desktop --hermes-home "$HERMES_HOME" --desktop "$HOME/Desktop"
 
 say "5 of 5 — Verifying the installation"
 "$REPO_DIR/orgo/verify.sh" --allow-unconnected
 
-cat <<'TEXT'
+printf '\n%s is installed on this Orgo computer.\n' "$AGENT_DISPLAY_NAME"
+if [ -f "$HERMES_HOME/revenue-agent-identity.json" ]; then
+  printf 'Use this personalized Slack manifest: %s/slack-manifest.json\n' "$HERMES_HOME"
+fi
 
-Revenue Partner is installed on this Orgo computer.
+cat <<'TEXT'
 
 Next:
   ./orgo/connect-channels.sh   Connect Slack and/or Telegram

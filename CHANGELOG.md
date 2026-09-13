@@ -8,6 +8,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ### Added
 
+- Orgo self-install naming with optional `--name-prefix` / `AGENT_NAME_PREFIX`,
+  required **Revenue Agent** branding, and private persistent naming settings.
+- Personalized Slack app/bot manifest names, SOUL introduction, and desktop
+  labels; read-only local and Slack identity checks report drift without renaming
+  apps. Existing Orgo profiles without managed naming settings are not migrated.
+- Naming regression coverage for repeat setup, owner customizations, failed-write
+  recovery, manifest parity, Slack failures, and credential-safe diagnostics.
+- Preexisting owner skills are no longer adopted as replaceable installer seeds
+  during the first sync, so subsequent Orgo setup runs keep those edits.
+
 - Beginner-first private VPS installer using the official Hermes Agent 0.20.6
   image pinned by release tag and multi-platform digest.
 - Complete Slack Agent-view manifest generated from the current Hermes command

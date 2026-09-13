@@ -10,7 +10,7 @@ EXPECTED_COMMIT="5fc308a70719a83cccdbba4c0e39c23f5a8239d5"
 python3 -m json.tool "$REPO_DIR/orgo/deployment.json" >/dev/null
 bash -n "$REPO_DIR/orgo/setup.sh" "$REPO_DIR/orgo/connect-channels.sh" \
   "$REPO_DIR/orgo/connect-tools.sh" "$REPO_DIR/orgo/connect-a2a.sh"
-python3 -m py_compile "$REPO_DIR/orgo/sync_seed.py"
+python3 -m py_compile "$REPO_DIR/orgo/sync_seed.py" "$REPO_DIR/orgo/identity.py"
 [ -f "$HERMES_HOME/SOUL.md" ]
 [ -f "$HERMES_HOME/skills/go-to-market/revenue-partner/SKILL.md" ]
 installed="$(git -C /usr/local/lib/hermes-agent rev-parse HEAD 2>/dev/null || true)"
@@ -20,8 +20,18 @@ installed="$(git -C /usr/local/lib/hermes-agent rev-parse HEAD 2>/dev/null || tr
 }
 hermes config get gateway.platforms.a2a.enabled 2>/dev/null | grep -qi true
 hermes config get platform_toolsets.cli 2>/dev/null | grep -q a2a
+IDENTITY_ARGS=()
+[ "$ALLOW_UNCONNECTED" = false ] || IDENTITY_ARGS=(--local-only)
+# Use Hermes's dotenv parser when checking the actual Slack token, without
+# importing the agent or executing its gateway. Local checks need only stdlib.
+IDENTITY_PYTHON=python3
+if [ -x /usr/local/lib/hermes-agent/venv/bin/python3 ]; then
+  IDENTITY_PYTHON=/usr/local/lib/hermes-agent/venv/bin/python3
+fi
+"$IDENTITY_PYTHON" "$REPO_DIR/orgo/identity.py" verify --hermes-home "$HERMES_HOME" "${IDENTITY_ARGS[@]}"
 if [ "$ALLOW_UNCONNECTED" = false ]; then
   hermes doctor
   hermes gateway status
 fi
-echo "Revenue Partner Orgo verification passed."
+AGENT_DISPLAY_NAME="$(python3 "$REPO_DIR/orgo/identity.py" name --hermes-home "$HERMES_HOME")"
+printf '%s Orgo verification passed.\n' "$AGENT_DISPLAY_NAME"

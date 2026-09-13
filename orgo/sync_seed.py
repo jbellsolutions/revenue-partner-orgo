@@ -3,11 +3,13 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
 import shutil
-import sys
+
+from identity import IdentityError, prepare
 
 
 def digest(path: Path) -> str:
@@ -29,14 +31,24 @@ def sync_tree(source: Path, target: Path, prior: dict[str, str], current: dict[s
             shutil.copy2(source_file, target_file)
             current[key] = source_digest
         else:
-            current[key] = previous_digest or digest(target_file)
+            # An existing, untracked owner file is not a seed we installed.
+            # Recording its hash would authorize replacing it on the next run.
+            if previous_digest:
+                current[key] = previous_digest
 
 
 def main() -> int:
-    if len(sys.argv) != 3:
-        raise SystemExit("usage: sync_seed.py REPOSITORY_ROOT HERMES_HOME")
-    root = Path(sys.argv[1]).resolve()
-    hermes_home = Path(sys.argv[2]).resolve()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("repository_root", type=Path)
+    parser.add_argument("hermes_home", type=Path)
+    parser.add_argument("--name-prefix")
+    args = parser.parse_args()
+    root = args.repository_root.resolve()
+    hermes_home = args.hermes_home.resolve()
+    try:
+        prepare(root, hermes_home, args.name_prefix)
+    except IdentityError as error:
+        parser.exit(1, f"Agent naming: {error}\n")
     hermes_home.mkdir(parents=True, exist_ok=True)
     marker = hermes_home / ".revenue-partner-orgo-profile"
     manifest_path = hermes_home / ".revenue-partner-orgo-seed.json"
@@ -46,11 +58,7 @@ def main() -> int:
         prior = {}
     current: dict[str, str] = {}
 
-    soul = hermes_home / "SOUL.md"
     if not marker.exists():
-        if soul.exists() and soul.read_bytes() != (root / "files/SOUL.md").read_bytes():
-            shutil.copy2(soul, hermes_home / "SOUL.md.before-revenue-partner")
-        shutil.copy2(root / "files/SOUL.md", soul)
         marker.write_text("Revenue Partner Orgo profile installed.\n")
 
     for source, target in (

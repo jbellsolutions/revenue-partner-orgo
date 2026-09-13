@@ -64,6 +64,20 @@ cd revenue-partner-orgo
 ./orgo/setup.sh
 ```
 
+New installations default to **Revenue Agent**. To personalize one, the setup
+agent runs `./orgo/setup.sh --name-prefix "Acme"` instead, producing **Acme Revenue
+Agent**. `Revenue Agent` is always included. The optional `AGENT_NAME_PREFIX`
+environment setting is also supported; priority is the command argument, then
+environment, then saved installation setting, then the default. An explicitly
+empty prefix selects the default. The complete name can be at most 35 characters
+(21 for the prefix); invalid names are rejected rather than shortened.
+
+The installer saves the choice privately in
+`$HERMES_HOME/revenue-agent-identity.json` and generates the Slack manifest there.
+`HERMES_HOME` defaults to `~/.hermes`. Repeated setup retains the saved name and
+owner-edited instructions. Existing Orgo profiles without this new settings file
+retain their old identity; setup does not automatically migrate them.
+
 The installer pins the reviewed Hermes 0.20.6 release, installs the Revenue
 Partner identity, knowledge structure, GTM skill, browser specialists, full
 operator toolset, approval rules, and the safe A2A foundation. It also places
@@ -84,22 +98,27 @@ messaging channels.
 
 ## Step 4 — Connect Slack
 
-Use the included [slack-manifest.json](slack-manifest.json) and the exact
-[Slack screen walkthrough](docs/SLACK-SETUP.md). Then run:
+Use the personalized `~/.hermes/slack-manifest.json` printed by setup (or the
+path under your configured `HERMES_HOME`) and the exact
+[Slack screen walkthrough](docs/SLACK-SETUP.md). The repository's [base manifest](slack-manifest.json)
+is an input to the generator, not the personalized file to install. Then run:
 
 ```bash
 ./orgo/connect-channels.sh
 ```
 
 Choose Slack. The helper privately stores the `xoxb-` Bot Token, the `xapp-`
-Socket Mode token, and the owner's Slack Member ID. Invite Revenue Partner only
+Socket Mode token, and the owner's Slack Member ID. Invite the named agent only
 to channels it is allowed to read.
 
 Prove three things:
 
 1. Send `hello` in a direct message and receive a reply.
-2. Invite Revenue Partner to one approved channel and mention it once.
+2. Invite the named agent to one approved channel and mention it once.
 3. Reply inside that thread without another mention and receive the follow-up.
+4. Confirm the Slack sender label and its introduction both use the full name,
+   for example **Acme Revenue Agent**. The verifier checks the connected bot with
+   read-only Slack API calls and reports mismatches without renaming anything.
 
 ## Step 5 — Add Telegram
 
