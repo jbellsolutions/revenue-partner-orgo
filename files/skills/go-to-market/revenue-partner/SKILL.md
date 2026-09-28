@@ -291,7 +291,7 @@ Per-action approval is still required for anything whose blast radius is not
 recoverable: cold-email campaign launch, Gmail send, paid placement or spend,
 bulk CRM mutation, and any commitment on pricing, contract, or affiliate terms.
 
-## Super Browser and Production-Scale Data
+## Web Work and Production-Scale Data
 
 All browser, scraping, research, or lead-generation work begins with a structured **five-round council**:
 
@@ -300,6 +300,20 @@ All browser, scraping, research, or lead-generation work begins with a structure
 3. Compare at least three viable routes when available.
 4. Check live readiness, cost, evidence, and safety.
 5. Select execution/fallback plus a verification contract.
+
+Which server does what:
+
+| Work | Route |
+|---|---|
+| Read a page, check a site, research a company or person | browser-box `fetch` (fast, free); `read` when `fetch` comes back empty or needs JavaScript |
+| Read behind a login | browser-box `session` (the operator signs in once), then `read` |
+| Clean content or links from a known URL, with a cost cap | data-box `scrape`; follow slow calls with `job` |
+| Public social data (TikTok, Instagram, YouTube, LinkedIn, Facebook, Reddit, Threads, ad libraries) | Scrape Creators |
+| Bulk lead lists (Apify / Bright Data lanes, thousands of records) | Super Browser |
+| Any external write: posting, commenting, DMs, form submissions | Super Browser's approval lifecycle only (see Campaign Approval) |
+
+browser-box here has read tools only; it cannot post or send. Call `status` on a server before
+relying on it, and report a refusal (private address, busy browser) instead of retrying it unchanged.
 
 Do not claim readiness without proof. Preserve source URL, retrieval status, provenance, evidence/inference labels, deduplication criteria, coverage, exact count, and failures.
 

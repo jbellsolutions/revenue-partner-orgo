@@ -8,6 +8,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ### Added
 
+- browser-box and data-box, Super Browser's successors, attached by URL
+  (`BROWSER_BOX_URL`/`_TOKEN`, `DATABOX_URL`/`_TOKEN`, passed through the safe
+  env bridge). browser-box is pinned to its read tools (fetch, read, session,
+  status) with `tools.include`; posting and other external writes stay on Super
+  Browser's approval lifecycle. The skill routes page reads to browser-box,
+  page data to data-box, bulk lead lists and writes to Super Browser.
 - Beginner-first private VPS installer using the official Hermes Agent 0.20.6
   image pinned by release tag and multi-platform digest.
 - Complete Slack Agent-view manifest generated from the current Hermes command

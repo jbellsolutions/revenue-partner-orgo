@@ -21,7 +21,7 @@ top of follow-up, prepare proposals, organize the work, and protect your time.
 [![Orgo](https://img.shields.io/badge/Orgo-schema_validated_not_published-f59e0b)](docs/VERIFICATION.md)
 [![Hermes](https://img.shields.io/badge/Hermes_Agent-0.20.6-0f766e)](https://github.com/NousResearch/hermes-agent)
 [![Slack](https://img.shields.io/badge/Slack-Agent_View-4A154B?logo=slack)](docs/SLACK-SETUP.md)
-[![MCP](https://img.shields.io/badge/MCP_configured-2_hosted-6366f1)](#-whats-in-the-box)
+[![MCP](https://img.shields.io/badge/MCP_configured-4_hosted-6366f1)](#-whats-in-the-box)
 [![Secrets](https://img.shields.io/badge/baked_secrets-0-e11d48?logo=1password&logoColor=white)](#-your-keys-stay-yours)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
@@ -285,8 +285,10 @@ flowchart LR
         OBS["Obsidian · HermesVault"]
     end
 
-    subgraph mcp["🔌 2 hosted MCP servers (attached by URL)"]
-        SB["Super Browser<br/>12 providers · approval lifecycle"]
+    subgraph mcp["🔌 4 hosted MCP servers (attached by URL)"]
+        SB["Super Browser<br/>bulk lead lists · approval lifecycle for writes"]
+        BB["browser-box<br/>read pages in a real browser"]
+        DB["data-box<br/>page data · cost cap per call"]
         SC["Scrape Creators<br/>public social + ad libraries"]
     end
 
@@ -343,7 +345,7 @@ Slack is retained and operator-enabled; what the agent may DO over Slack is boun
 | **Agent** | Recommended VPS: Hermes Agent 0.20.6 in a digest-pinned official image. Legacy Orgo template: Hermes Agent 0.18.0 in its original hash-locked runtime |
 | **Chat** | Slack (socket mode) and optional Telegram QR onboarding, both operator-configured |
 | **Secrets** | Runtime-only environment/secret-manager inputs; no credential values are embedded in the template |
-| **Browser** | Hosted Super Browser MCP, **attached by URL, never vendored** — 12 providers (Playwright, Browser Use, Airtop, Hyperbrowser, Steel, Browserbase, Orgo desktop, Decodo, four Bright Data lanes) with Apify actor routing, persistent browser profiles, and the full approval lifecycle running server-side |
+| **Browser** | Hosted MCP servers, **attached by URL, never vendored**: browser-box (read tools: fetch, read, session, status) and data-box (page data with a per-call cost cap) for reading; Super Browser for bulk lead lists and every approval-gated external write — 12 providers (Playwright, Browser Use, Airtop, Hyperbrowser, Steel, Browserbase, Orgo desktop, Decodo, four Bright Data lanes) with Apify actor routing, persistent browser profiles, and the full approval lifecycle running server-side |
 | **Phone** | AgentPhone future-integration reference source only; all executable entrypoints and concrete network/send boundaries are hard-stopped |
 | **Tracing** | Optional Latitude telemetry when configured and verified |
 | **Skills** | Curated Revenue Partner operating skill and references, bundled current Hermes catalog, Super Browser specialists, Skills Hub search/install/update/audit, and optional skill-write approval |
@@ -384,7 +386,7 @@ Replace `'WORKSPACE_ID'` with the literal non-secret workspace ID. Omit `--launc
 <details>
 <summary><b>Make it yours — what's in <code>files/</code></b></summary>
 
-- `config.yaml` — the Hermes config (2 configured/enabled hosted MCP servers — Super Browser and Scrape Creators — 9 enabled model/telemetry plugins, per-platform toolsets, and the narrow 1Password map)
+- `config.yaml` — the Hermes config (4 configured/enabled hosted MCP servers — Super Browser, browser-box, data-box and Scrape Creators — 9 enabled model/telemetry plugins, per-platform toolsets, and the narrow 1Password map)
 - `SOUL.md` — the agent's personality
 - `onboard.sh` / `telegram-pair.py` / `op-enable.py` — the first-boot setup
 - `agentphone-bridge/` — reviewed future-integration source; supervisor entrypoint and direct network helpers are hard-stopped

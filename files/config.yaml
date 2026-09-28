@@ -210,11 +210,13 @@ platforms:
 platform_toolsets:
   # Local/driven path (rp, hermes). Reached only via the authenticated Orgo API.
   # Deliberately excludes terminal, code_execution, delegation, computer_use, and
-  # the built-in browser/web tools so all web work routes through Super Browser's
-  # policy layer rather than around it.
+  # the built-in browser/web tools. Web reads go through browser-box/data-box;
+  # every web WRITE routes through Super Browser's policy layer, never around it.
   cli:
     - session_search
     - super-browser
+    - browser-box
+    - data-box
     - scrape-creators
     - skills
     - memory
@@ -227,11 +229,13 @@ platform_toolsets:
   # Slack is a full operator channel by explicit choice: the workspace is
   # trusted, so any member can drive the agent. It carries the same working set
   # as `cli` and the same exclusions -- no terminal, code_execution, delegation
-  # or computer_use, and no built-in browser/web tools, so all web work still
+  # or computer_use, and no built-in browser/web tools, so every web write still
   # routes through Super Browser's policy layer.
   slack:
     - session_search
     - super-browser
+    - browser-box
+    - data-box
     - scrape-creators
     - skills
     - memory
@@ -288,6 +292,34 @@ mcp_servers:
     # its own server-config dict and the value does not survive config.yaml, so
     # the cadence stays pinned at the 180s default. Setting it looks like a fix
     # and silently is not.
+
+  # browser-box and data-box: the successors to Super Browser, run by the operator
+  # (see github.com/jbellsolutions/box-kit), attached by URL like Super Browser.
+  #
+  # browser-box is limited to its READ tools here. fetch/read/session/status
+  # cannot post, send or buy; external writes (posting, DMs, form submissions)
+  # stay on Super Browser's approval lifecycle until a reviewed write path
+  # exists. `tools.include` pins that set, so tools the server adds later
+  # (act, task, computer) are NOT enabled by accident.
+  browser-box:
+    url: ${BROWSER_BOX_URL}/mcp
+    headers:
+      Authorization: Bearer ${BROWSER_BOX_TOKEN}
+    enabled: true
+    connect_timeout: 60
+    tool_timeout: 300.0
+    tools:
+      include: [fetch, read, session, status]
+
+  # data-box: web data with a cost cap on every call (max_cost_usd, default
+  # $0.05) and a job ledger. Read-only by nature.
+  data-box:
+    url: ${DATABOX_URL}/mcp
+    headers:
+      Authorization: Bearer ${DATABOX_TOKEN}
+    enabled: true
+    connect_timeout: 60
+    tool_timeout: 120.0
 
   # Scrape Creators — vendor DATA PLANE. 180 public routes across TikTok,
   # Instagram, YouTube, LinkedIn, Facebook, Reddit and Threads plus the Facebook,
