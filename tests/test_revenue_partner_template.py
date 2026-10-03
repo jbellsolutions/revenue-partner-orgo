@@ -79,14 +79,14 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         mcp_servers = config["mcp_servers"]
         enabled_mcp = sum(server.get("enabled", True) for server in mcp_servers.values())
         enabled_plugins = config["plugins"]["enabled"]
-        self.assertEqual((len(mcp_servers), enabled_mcp, len(enabled_plugins)), (2, 2, 9))
+        self.assertEqual((len(mcp_servers), enabled_mcp, len(enabled_plugins)), (4, 4, 9))
 
         readme = LEGACY_README.read_text()
         app_description = self.builder.template["apps"][0]["description"]
-        self.assertIn("2 hosted MCP servers (attached by URL)", readme)
-        self.assertIn("MCP_configured-2_hosted", readme)
+        self.assertIn("4 hosted MCP servers (attached by URL)", readme)
+        self.assertIn("MCP_configured-4_hosted", readme)
         self.assertIn("9 enabled model/telemetry plugins", readme)
-        self.assertIn("2 configured/enabled MCP connections", app_description)
+        self.assertIn("4 configured/enabled MCP connections", app_description)
 
     def test_readme_badges_do_not_overstate_or_link_to_missing_targets(self):
         readme = LEGACY_README.read_text()
@@ -205,6 +205,28 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         server = parsed["mcp_servers"]["super-browser"]
         self.assertNotIn("command", server)
         self.assertTrue(server["enabled"])
+
+    def test_config_attaches_browser_box_read_only_and_data_box_by_url(self):
+        """Super Browser's successors attach by URL like it does. browser-box is pinned to
+        its read tools: posting, sending and form submission stay on Super Browser's
+        approval lifecycle, and a tool the server adds later is not enabled by accident."""
+        config = (FILES / "config.yaml").read_text()
+        self.assertIn("url: ${BROWSER_BOX_URL}\n", config)
+        self.assertIn("Authorization: Bearer ${BROWSER_BOX_TOKEN}", config)
+        self.assertIn("url: ${DATABOX_URL}\n", config)
+        self.assertIn("Authorization: Bearer ${DATABOX_TOKEN}", config)
+        servers = yaml.safe_load(config)["mcp_servers"]
+        for name in ("browser-box", "data-box"):
+            self.assertNotIn("command", servers[name], name)
+            self.assertTrue(servers[name]["enabled"], name)
+        self.assertEqual(servers["browser-box"]["tools"]["include"], ["fetch", "read", "session", "status"])
+        for write_tool in ("act", "task", "computer"):
+            self.assertNotIn(write_tool, servers["browser-box"]["tools"]["include"])
+        # data-box's priced pulls need a human approval step this agent does not have.
+        self.assertEqual(servers["data-box"]["tools"]["include"], ["status", "scrape", "job"])
+        bridge = (FILES / "safe-env-bridge.py").read_text()
+        for name in ("BROWSER_BOX_URL", "BROWSER_BOX_TOKEN", "DATABOX_URL", "DATABOX_TOKEN"):
+            self.assertEqual(bridge.count(f'"{name}"'), 2, name)
 
     def test_builder_does_not_vendor_super_browser_or_a_browser_runtime(self):
         """The image ships no second copy of Super Browser and no local browser.
@@ -3046,7 +3068,7 @@ print("direct_hosted_helpers_blocked")
         # stays read-only, so widening these two cannot widen the rest.
         safe_remote_toolsets = {"session_search"}
         working_toolsets = {
-            "session_search", "super-browser", "scrape-creators",
+            "session_search", "super-browser", "browser-box", "data-box", "scrape-creators",
             "skills", "memory", "file", "todo",
         }
         platform_toolsets = config["platform_toolsets"]

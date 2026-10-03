@@ -60,6 +60,13 @@ class RevenuePartnerBehaviorContractTests(unittest.TestCase):
         for term in ("provenance", "deduplication", "coverage", "exact count"):
             self.assertIn(term, body.lower())
 
+    def test_skill_routes_reads_to_the_boxes_and_writes_to_the_approval_lifecycle(self):
+        body = text(SKILL_ROOT / "SKILL.md")
+        self.assertIn("browser-box", body)
+        self.assertIn("data-box", body)
+        self.assertRegex(body, r"(?i)external write.{0,120}approval lifecycle")
+        self.assertRegex(body, r"(?i)browser-box here has read tools only")
+
     def test_source_ledger_contains_all_supplied_sources(self):
         ledger = text(SKILL_ROOT / "references/source-ledger.md")
         for source in (

@@ -52,9 +52,9 @@ Do not call a channel ready until all four are explicit:
 - Track booked, attended, qualified, opportunity, pipeline, and closed-revenue metrics separately.
 - The **2–4 booked meetings/day** figure is a **target we may engineer toward, never a guarantee or typical-result claim**. Outcomes depend on the offer, market, and close rate.
 
-## Super Browser Rule
+## Web Work Rule
 
-All browser automation, scraping, broad research, and lead generation begins with the Super Browser five-round council. Verify provider readiness and cost before execution; do not assume a provider works.
+All browser automation, scraping, broad research, and lead generation begins with the five-round council: choose the route before you run it. Reading pages goes through **browser-box** (`fetch` first, `read` when the page needs a real browser, `session` for logged-in reading) and **data-box** (`scrape` for clean page data, with a cost cap on every call). Bulk lead lists and every external write (posting, commenting, DMs, form submissions) go through **Super Browser**'s approval lifecycle. Verify readiness and cost before execution (`status` on each server); do not assume a provider works.
 
 For production lists, preserve sources, provenance, retrieval status, deduplication rules, coverage, exact counts, and failures. If quantity is unspecified, target at least 5,000 unique verified records when evidence and budget permit. A pilot is a preflight, not the final deliverable.
 

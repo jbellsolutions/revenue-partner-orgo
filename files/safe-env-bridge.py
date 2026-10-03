@@ -35,6 +35,11 @@ MANAGED_KEYS = (
     # the bridge rebuild or the MCP server authenticates as anonymous.
     "SUPER_BROWSER_URL",
     "SUPER_BROWSER_TOKEN",
+    # browser-box and data-box hosted transports (Super Browser's successors), same reason.
+    "BROWSER_BOX_URL",
+    "BROWSER_BOX_TOKEN",
+    "DATABOX_URL",
+    "DATABOX_TOKEN",
     # Non-secret operational defaults.
     "AGENT_BROWSER_EXECUTABLE_PATH",
     "TERMINAL_TIMEOUT",
@@ -92,6 +97,11 @@ RUNTIME_MANAGED_KEYS = (
     # the bridge rebuild or the MCP server authenticates as anonymous.
     "SUPER_BROWSER_URL",
     "SUPER_BROWSER_TOKEN",
+    # browser-box and data-box hosted transports (Super Browser's successors), same reason.
+    "BROWSER_BOX_URL",
+    "BROWSER_BOX_TOKEN",
+    "DATABOX_URL",
+    "DATABOX_TOKEN",
     "AGENT_BROWSER_EXECUTABLE_PATH",
     "TERMINAL_TIMEOUT",
     "TERMINAL_LIFETIME_SECONDS",
