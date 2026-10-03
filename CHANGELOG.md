@@ -14,6 +14,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
   status) with `tools.include`; posting and other external writes stay on Super
   Browser's approval lifecycle. The skill routes page reads to browser-box,
   page data to data-box, bulk lead lists and writes to Super Browser.
+- `BROWSER_BOX_URL` and `DATABOX_URL` are the full MCP endpoints (ending in `/mcp`),
+  as box-kit prints them. data-box is pinned to `status`, `scrape` and `job`: its
+  priced `plan`/`execute` pulls stay off until this agent has an approval step.
 - Beginner-first private VPS installer using the official Hermes Agent 0.20.6
   image pinned by release tag and multi-platform digest.
 - Complete Slack Agent-view manifest generated from the current Hermes command

@@ -211,9 +211,9 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         its read tools: posting, sending and form submission stay on Super Browser's
         approval lifecycle, and a tool the server adds later is not enabled by accident."""
         config = (FILES / "config.yaml").read_text()
-        self.assertIn("url: ${BROWSER_BOX_URL}/mcp", config)
+        self.assertIn("url: ${BROWSER_BOX_URL}\n", config)
         self.assertIn("Authorization: Bearer ${BROWSER_BOX_TOKEN}", config)
-        self.assertIn("url: ${DATABOX_URL}/mcp", config)
+        self.assertIn("url: ${DATABOX_URL}\n", config)
         self.assertIn("Authorization: Bearer ${DATABOX_TOKEN}", config)
         servers = yaml.safe_load(config)["mcp_servers"]
         for name in ("browser-box", "data-box"):
@@ -222,6 +222,8 @@ class RevenuePartnerTemplateTests(unittest.TestCase):
         self.assertEqual(servers["browser-box"]["tools"]["include"], ["fetch", "read", "session", "status"])
         for write_tool in ("act", "task", "computer"):
             self.assertNotIn(write_tool, servers["browser-box"]["tools"]["include"])
+        # data-box's priced pulls need a human approval step this agent does not have.
+        self.assertEqual(servers["data-box"]["tools"]["include"], ["status", "scrape", "job"])
         bridge = (FILES / "safe-env-bridge.py").read_text()
         for name in ("BROWSER_BOX_URL", "BROWSER_BOX_TOKEN", "DATABOX_URL", "DATABOX_TOKEN"):
             self.assertEqual(bridge.count(f'"{name}"'), 2, name)
