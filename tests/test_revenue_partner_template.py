@@ -2859,8 +2859,9 @@ assert bounded.closed and not hasattr(bounded_result, "read")
         ):
             self.assertNotIn(stale_guidance, shipped_text)
         readme = LEGACY_README.read_text()
-        security = (ROOT / "docs/SECURITY_MODEL.md").read_text()
-        operator = (ROOT / "docs/OPERATOR_GUIDE.md").read_text()
+        # The Orgo referral link wraps brand names; match the prose with links flattened.
+        security = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", (ROOT / "docs/SECURITY_MODEL.md").read_text())
+        operator = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", (ROOT / "docs/OPERATOR_GUIDE.md").read_text())
         onboarding = (FILES / "onboard.sh").read_text()
         self.assertIn("removed by the exact-version image-build pruner", readme)
         self.assertIn("direct network helpers are hard-stopped", readme)
